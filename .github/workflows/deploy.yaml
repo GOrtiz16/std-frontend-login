@@ -62,40 +62,40 @@ jobs:
           docker build . -t ${{ vars.REGISTRY_SERVER }}/${{ steps.repo-name.outputs.repo }}:latest
           docker push ${{ vars.REGISTRY_SERVER }}/${{ steps.repo-name.outputs.repo }}:latest
 
-      # Set the target Azure Kubernetes Service (AKS) cluster. 
-      - uses: azure/aks-set-context@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          cluster-name: ${{ env.CLUSTER_NAME }}
-          resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+      # # Set the target Azure Kubernetes Service (AKS) cluster. 
+      # - uses: azure/aks-set-context@v1
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+      #     cluster-name: ${{ env.CLUSTER_NAME }}
+      #     resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
 
-      # Create namespace if doesn't exist
-      - run: |
-          kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
+      # # Create namespace if doesn't exist
+      # - run: |
+      #     kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
 
-      # Create imagepullsecret for Azure Container registry (ACR)
-      - uses: azure/k8s-create-secret@v1
-        with:
-          container-registry-url: ${{ vars.REGISTRY_SERVER }}
-          container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
-          container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-          secret-name: ${{ vars.REGISTRY_SERVER }}-registry-connection
-          namespace: ${{ env.NAMESPACE }}
+      # # Create imagepullsecret for Azure Container registry (ACR)
+      # - uses: azure/k8s-create-secret@v1
+      #   with:
+      #     container-registry-url: ${{ vars.REGISTRY_SERVER }}
+      #     container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
+      #     container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+      #     secret-name: ${{ vars.REGISTRY_SERVER }}-registry-connection
+      #     namespace: ${{ env.NAMESPACE }}
 
-      # Baking the helm chart to generate the manifests to deploy
-      - uses: azure/k8s-bake@v3
-        with:
-          renderEngine: 'helm'
-          helmChart: './helm/' 
-          helm-version: 'latest' 
-        id: bake
+      # # Baking the helm chart to generate the manifests to deploy
+      # - uses: azure/k8s-bake@v3
+      #   with:
+      #     renderEngine: 'helm'
+      #     helmChart: './helm/' 
+      #     helm-version: 'latest' 
+      #   id: bake
 
-      # Deploy app to AKS
-      - uses: azure/k8s-deploy@v5
-        with:
-          manifests: ${{ steps.bake.outputs.manifestsBundle }}
-          images: |
-            ${{ vars.REGISTRY_SERVER }}/${{ steps.repo-name.outputs.repo }}:latest
-          imagepullsecrets: |
-            ${{ env.REGISTRY_NAME }}-registry-connection
-          namespace: ${{ env.NAMESPACE }}
+      # # Deploy app to AKS
+      # - uses: azure/k8s-deploy@v5
+      #   with:
+      #     manifests: ${{ steps.bake.outputs.manifestsBundle }}
+      #     images: |
+      #       ${{ vars.REGISTRY_SERVER }}/${{ steps.repo-name.outputs.repo }}:latest
+      #     imagepullsecrets: |
+      #       ${{ env.REGISTRY_NAME }}-registry-connection
+      #     namespace: ${{ env.NAMESPACE }}
