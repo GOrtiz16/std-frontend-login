@@ -39,7 +39,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "postcss": "^8.4.38",
-    "stencil-library": "file:../stencil-library/stencil-library-0.0.1.tgz",
+    "stencil-library": "file:stencil-library/stencil-library-0.0.1.tgz",
     "tailwindcss": "^3.4.3",
     "typescript": "~5.4.2"
   }
