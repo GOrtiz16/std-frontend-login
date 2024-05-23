@@ -43,7 +43,7 @@ jobs:
       
       - name: Extraer nombre de repositorio
         id: repo-name
-      - run: |
+        run: |
           SERVICE=$(echo ${{ github.repository }} | cut -d'/' -f2 | cut -d'-' -f3)
           echo "::set-output name=repo::$SERVICE"
 
