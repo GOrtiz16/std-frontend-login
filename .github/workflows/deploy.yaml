@@ -1,6 +1,12 @@
 name: node
 on:
   workflow_dispatch:
+
+env:
+  NAMESPACE: test
+  CLUSTER_NAME: az-eastus-bsp-dev-newobw-aks
+  CLUSTER_RESOURCE_GROUP: AZ-EASTUS-BSP-DEV-NEWOBW-ALL-RG
+
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -51,3 +57,14 @@ jobs:
         run: |
           docker build . -t ${{ vars.REGISTRY_SERVER }}/${{ steps.repo-name.outputs.repo }}:latest
           docker push ${{ vars.REGISTRY_SERVER }}/${{ steps.repo-name.outputs.repo }}:latest
+
+      # Set the target Azure Kubernetes Service (AKS) cluster. 
+      - uses: azure/aks-set-context@v1
+        with:
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+          cluster-name: ${{ env.CLUSTER_NAME }}
+          resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+
+
+      - run: |
+          kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
