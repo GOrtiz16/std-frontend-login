@@ -41,7 +41,7 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       
-      - run: echo ${{ github.repository }}
+      - run: echo ${{ github.repository }} | cut -d'/' -f1,2
 
       # - name: Build and push Docker image
       #   run: |
