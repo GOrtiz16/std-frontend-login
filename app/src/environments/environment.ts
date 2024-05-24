@@ -2,11 +2,13 @@ export const environment: any = {
   production: false,
   environment: 'local',
   logger: true,
-
+  mockFront: true,
+  mockBack: false,
   apiStd: {
-    baseURL: 'https://b2b96992-17ea-4756-89f8-f08f86150445.mock.pstmn.io/',
+    baseURLInfo: 'http://172.171.86.221:8090/',
+    baseURLLogin: 'http://172.171.86.221:8090/',
     servicePath: {
-      infoLogin: 'info-login',
+      infoLogin: 'api/mf/v1/login/info',
       loginUser: 'authenticate-login',
     },
   },

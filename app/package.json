@@ -2,7 +2,7 @@
   "name": "std-frontend-login",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
+    "dev": "ng serve --configuration development",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
@@ -23,6 +23,7 @@
     "@angular/router": "^17.3.0",
     "ngx-captcha": "^13.0.0",
     "rxjs": "~7.8.0",
+    "stencil-library": "file:stencil-library/stencil-library-0.0.1.tgz",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
@@ -39,7 +40,6 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "postcss": "^8.4.38",
-    "stencil-library": "file:stencil-library/stencil-library-0.0.1.tgz",
     "tailwindcss": "^3.4.3",
     "typescript": "~5.4.2"
   }

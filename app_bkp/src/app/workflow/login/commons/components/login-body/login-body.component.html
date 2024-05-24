@@ -1,0 +1,155 @@
+
+<form *ngIf="false" [formGroup]="loginPresenter.form">
+  
+
+  <mat-label>Usuario</mat-label>
+  <mat-form-field class="w-full mt-5" floatLabel="always">
+    <input matInput type="text" placeholder="Ingresa tu nombre de usuario" formControlName="username" />
+
+    @if (loginPresenter.username.hasError('required')) {
+    <mat-error>{{ loginPresenter.errorsCatelogue.usernameControlErrors.required }}</mat-error>
+    }
+  </mat-form-field>
+
+  <div class="pb-20">
+    <mat-checkbox formControlName="rememberUser" color="warn">Recordar usuario</mat-checkbox>
+  </div>
+
+  <mat-label>Contraseña</mat-label>
+  <mat-form-field class="w-full mt-5" floatLabel="always" #tooltip="matTooltip"
+    matTooltip="Si eres nuevo usuario, usa la contraseña temporal que enviamos a tu correo registrado. ¡Bienvenido!"
+    matTooltipPosition="above" matTooltipClass="std-tooltip" [matTooltipDisabled]="showToolTip">
+    <input matInput type="{{ visiblePassword ? 'text' : 'password' }}" placeholder="Ingresa tu contraseña"
+      formControlName="password" />
+
+    <mat-icon matSuffix class="material-icons-outlined" (click)="togglePassword()" color="accent">
+      {{ visiblePassword ? 'visibility_off' : 'visibility' }}
+    </mat-icon>
+
+    @if (loginPresenter.password.hasError('required')) {
+    <mat-error>{{ loginPresenter.errorsCatelogue.passwordControlErrors.required }}</mat-error>
+    }
+  </mat-form-field>
+
+  <a class="std-link" href="#" (click)="recoverPassword()">Recuperar contrase&ntilde;a</a>
+
+  <button type="submit" [disabled]="loginPresenter.form.invalid || isLoginIn || disabledButton"
+    class="w-full std-button" mat-flat-button color="warn" (click)="onSubmit()">
+    @if (isLoginIn) {
+    <mat-progress-spinner diameter="30" color="accent" mode="indeterminate"></mat-progress-spinner>
+    } @else {
+    <span>Ingresar</span>
+    }
+  </button>
+
+  <ng-template #noLogin2AttemptsLeft>
+    <p>
+      El usuario y/o contraseña ingresados no coinciden.<br /><br />
+      <span style="color: #23779a"><b>Te quedan 2 intentos más.</b><br />Ingresa tus datos correctamente o se bloqueará
+        tu acceso.</span>
+    </p>
+  </ng-template>
+
+  <ng-template #noLogin1AttemptLeft>
+    <p>
+      El usuario y/o contraseña ingresados no coinciden.<br /><br />
+      <span style="color: #23779a"><b>Te queda 1 intento más.</b><br />Ingresa tus datos correctamente o se bloqueará tu
+        acceso.</span>
+    </p>
+  </ng-template>
+
+  <ng-template #contactUs>
+    <p>
+      Comunícate con nuestro equipo de soporte al correo<br /><b>clientservice{{ '@'
+        }}santander.com.pe</b><br />¡Estamos aquí para ayudarte!
+    </p>
+  </ng-template>
+</form>
+
+
+<div class="px-4 py-8 lg:px-6 lg:pt-44 lg:pb-8">
+  <div class="flex flex-col gap-4 lg:gap-8 w-full max-w-lg mx-auto">
+    <h1 class="font-bold">
+      <span class="block text-3xl">¡Hola!</span>
+      <span class="block text-2xl">Te damos la bienvenida al nuevo Office Banking</span>
+    </h1>
+
+    <form [formGroup]="loginPresenter.form">
+      <!-- <std-alert class="mb-20" type="info" >
+        <span>Hemos enviado el código de verificación al correo m********{{'@'}}multiplica.com</span>
+      </std-alert> -->
+
+      <!-- <std-alert class="mb-20" type="error" >
+        <span>El código de verificación ha expirado. Debes generar un nuevo código.</span>
+      </std-alert> -->
+
+      @if (caseShowAlert === 'reintend') {
+      <std-alert class="mb-20" type="warning">
+        <span [innerHTML]="msghowAlert"></span>
+      </std-alert>
+      } @if (caseShowAlert === 'blocked') {
+      <std-alert class="mb-20" type="error">
+        <span [innerHTML]="msghowAlert"></span>
+      </std-alert>
+      }
+      
+      <div class="flex flex-col gap-6 lg:gap-8">
+        <div>
+          <div class="flex flex-col gap-1">
+            <label>Usuario</label>
+            <div class="relative">
+              <input
+                class="w-full h-12 rounded-lg p-3 placeholder:text-soft border-border-default hover:border-dark focus:border-alternative focus:ring-alternative"
+                type="text" placeholder="Ingresa tu nombre de usuario">
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="flex gap-2">
+            <input
+              class="w-6 h-6 rounded focus:ring-focus checked:bg-[length:12px_9px] text-alternative border-border-default hover:border-dark checked:bg-checkbox-checked checked:hover:text-alternative-dark"
+              type="checkbox">
+            <span>Recordar usuario</span>
+          </label>
+        </div>
+        <div>
+          <div class="flex flex-col gap-1">
+            <label>
+              Contraseña
+            </label>
+            <div class="relative group">
+
+              <input
+                class="w-full h-12 rounded-lg p-3 placeholder:text-soft border-border-default hover:border-dark focus:border-alternative focus:ring-alternative   pr-12"
+                type="password" placeholder="Ingresa tu contraseña">
+              <i class="absolute top-3 right-3 text-2xl leading-none text-alternative   icon-visibility-off"></i>
+              <div
+                class="absolute w-72 hidden bg-white rounded-2xl p-6 shadow-modal group-hover:block z-10 bottom-[calc(100%+1rem)] left-1/2 -translate-x-1/2">
+                <div class="absolute w-4 h-4 bg-white rotate-45 -bottom-2 left-1/2 -translate-x-1/2">
+                </div>
+                <div class="relative">
+                  <p class="text-sm text-center">Si eres <strong>nuevo usuario</strong>, usa la contraseña temporal que
+                    enviamos a tu correo registrado. ¡Bienvenido!</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="flex flex-col gap-4 lg:gap-8">
+          <a href="#"
+            class="inline-flex justify-center items-center gap-1 text-sm font-bold transition duration-300 ease-in-out text-alternative hover:text-alternative-dark flex-row-reverse">
+            <span>Recuperar contraseña</span>
+
+          </a>
+          <button
+            class="inline-flex justify-center items-center font-bold rounded-full transition-all duration-300 ease-in-out bg-primary text-white hover:bg-primary-dark gap-2 min-w-36 px-5 py-3 disabled:bg-dark/[0.06] disabled:text-dark/[0.23] disabled:shadow-none"
+            disabled="" aria-label="Ingresar">
+            <span>Ingresar</span>
+          </button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

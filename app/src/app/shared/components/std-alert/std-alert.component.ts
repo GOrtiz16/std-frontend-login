@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-type TType = 'warning' | 'info' | 'danger' | 'success' | 'error' | '';
+type TType = 'warning' | 'info' | 'success' | 'error' | '';
 
 @Component({
   selector: 'std-alert',
