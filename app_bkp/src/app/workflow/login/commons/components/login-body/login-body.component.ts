@@ -22,6 +22,8 @@ import { RECAPTCHA_KEY } from '../../constants/recaptcha.constants';
 import { Router } from '@angular/router';
 import { StdDialogComponent } from 'src/app/shared/components/std-dialog/std-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { StdDirectivesModule } from 'src/app/shared/directives/directives.module'
+import { ChannelInfoService } from '../../services/api/info.service';
 
 @Component({
   selector: 'std-login-body',
@@ -37,7 +39,8 @@ import { MatDialog } from '@angular/material/dialog';
     MatCheckboxModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
-    StdAlertComponent
+    StdAlertComponent,
+    StdDirectivesModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [LoginPresenter, LoginService],
@@ -60,6 +63,7 @@ export class LoginBodyComponent implements OnInit {
     private matDialog: MatDialog,
     public loginPresenter: LoginPresenter,
     public loginService: LoginService,
+    public channelInfoService: ChannelInfoService,
     public reCaptchaV3Service: ReCaptchaV3Service,
     private router: Router
   ) {}
@@ -78,7 +82,7 @@ export class LoginBodyComponent implements OnInit {
     );
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.caseShowAlert = '';
     this.showToolTip = true;
 
@@ -93,6 +97,8 @@ export class LoginBodyComponent implements OnInit {
       rememberUser: this.loginPresenter.rememberUser.value as boolean,
       recaptcha: this.loginPresenter.recaptcha.value as string
     };
+    
+    await this.sleep(1500);
 
     this.loginService.loginUser(request).subscribe(
       (response: ILoginUserResponse) => {
@@ -118,6 +124,7 @@ export class LoginBodyComponent implements OnInit {
     // }
 
     let title = '';
+   
     const {
       credentialOwner: { isFirstLogin, success, retry }
     } = response;
@@ -160,14 +167,14 @@ export class LoginBodyComponent implements OnInit {
       this.caseShowAlert = 'reintend';
       this.msghowAlert = this.loginPresenter.getAlertError('reintend1');
       title = '¡Oh, no! Parece que hubo un error';
-      this.openModal(title, undefined, this.noLogin2AttemptsLeftTpl);
+      this.openModal(title, undefined, this.noLogin1AttemptLeftTpl);
     }
 
     if (retry === 2) {
       this.caseShowAlert = 'reintend';
       this.msghowAlert = this.loginPresenter.getAlertError('reintend2');
       title = '¡Oh, no! Parece que hubo un error';
-      this.openModal(title, undefined, this.noLogin1AttemptLeftTpl);
+      this.openModal(title, undefined, this.noLogin2AttemptsLeftTpl);
     }
 
     if (retry === -1) {
@@ -227,13 +234,11 @@ export class LoginBodyComponent implements OnInit {
   recoverPassword() {}
 
   getUserChannelInfo() {
-    this.loginService.getUserChannnelInfo().subscribe(
+    this.channelInfoService.getChannnelInfo().subscribe(
       (response) => {
-        console.log('redirigir a home', response);
-        // this.isLoginIn = false;
+        
       },
-      () => {
-        // this.isLoginIn = false;
+      (error: ILoginUserResponseError) => {
       }
     );
   }
@@ -244,5 +249,9 @@ export class LoginBodyComponent implements OnInit {
       width: '600px',
       data: { title, content, template, icon, buttonLabel }
     });
+  }
+  
+  async sleep(time: number) {    
+    return await new Promise(resolve => setTimeout(resolve, time));
   }
 }

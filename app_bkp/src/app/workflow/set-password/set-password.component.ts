@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 import { StdStepperComponent } from 'src/app/shared/components/std-stepper/std-stepper.component';
 import { LoginFooterComponent } from '../login/commons/components/login-footer/login-footer.component';
@@ -12,6 +12,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-set-password',
@@ -29,6 +30,7 @@ import { CommonModule } from '@angular/common';
     MatProgressSpinnerModule,
     MatSlideToggleModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './set-password.component.html',
   styleUrls: ['./set-password.component.scss'],
 })
@@ -38,7 +40,8 @@ export class SetPasswordComponent {
   isLoginIn = false;
   showStrengthInfo = false;
 
-  constructor() {}
+  constructor(
+    private router: Router) {}
 
   ngOnInit() {}
 
@@ -50,11 +53,12 @@ export class SetPasswordComponent {
     this.visiblePassword2 = !this.visiblePassword2;
   }
 
-  onSubmit() {}
-
   recoverPassword() {}
 
   onStrengthChanged(event: any) {
-    console.log(event);
+  }
+  
+  onSubmit() {
+    this.router.navigateByUrl('/verificationCode');
   }
 }

@@ -50,10 +50,10 @@ export class LoginPresenter {
 
     switch (typeError) {
       case 'reintend1':
-        msg = '<b>Tienes 2 intentos más</b>, caso contrario, por tu seguridad bloquearemos tu acceso a la plataforma.';
+        msg = '<b>Tienes 1 intentos más</b>, caso contrario, por tu seguridad bloquearemos tu acceso a la plataforma.';
         break;
       case 'reintend2':
-        msg = '<b>Tienes 1 intento más</b>, caso contrario, por tu seguridad bloquearemos tu acceso a la plataforma.';
+        msg = '<b>Tienes 2 intento más</b>, caso contrario, por tu seguridad bloquearemos tu acceso a la plataforma.';
         break;
       case 'blocked':
         msg =
