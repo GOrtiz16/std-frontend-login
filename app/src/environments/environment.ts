@@ -2,7 +2,7 @@ export const environment: any = {
   production: false,
   environment: 'local',
   apiStdLogin: {
-    mock: true,
+    mock: false,
     ip: 'http://4.236.220.191:80/',
     api_info_canal: 'api/mf/v1/login/info',
     api_authentication: 'api/mf/v1/login/authentication',
