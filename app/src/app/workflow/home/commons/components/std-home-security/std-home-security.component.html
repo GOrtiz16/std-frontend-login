@@ -1,10 +1,10 @@
-<std-modal [show]="showModal" size="m">
+<std-modal [show]="showModal" size="m" (iconClick)="closeModal()">
   <div class="flex flex-col gap-4 w-full text-center">
     <i class="icon-time text-primary text-4xl"></i>
     <h2 class="font-bold text-2xl">Tu sesión está por expirar</h2>
     <p>
       Por inactividad y para garantizar tu seguridad, tu sesión expirará en:
-      <br>
+      <br />
       <span class="font-headline font-bold">04:59</span>
     </p>
   </div>

@@ -11,7 +11,7 @@ export class MaintenanceComponent {
  constructor(
     private router: Router) {}
 
-  goToHome() {
-    this.router.navigate(['/home'])
+  goToLogin() {
+    this.router.navigate(['/login'])
   }
 }

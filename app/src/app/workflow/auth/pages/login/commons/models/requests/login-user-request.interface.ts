@@ -1,7 +1,7 @@
 export interface ILoginUserRequest {
   seed: string;
-  username: string;
-  password: string[];
+  userCredentialId: string;
+  password: {};
   rememberUser: boolean;
   recaptcha: string;
 }

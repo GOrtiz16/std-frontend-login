@@ -12,7 +12,7 @@ import { ROUTES } from './home.routes';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     CommonModule,

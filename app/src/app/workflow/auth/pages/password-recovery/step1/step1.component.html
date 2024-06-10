@@ -1,0 +1,12 @@
+<div class="w-full max-w-lg mx-auto">
+  <form [formGroup]="form">
+    <div class="flex flex-col gap-6 lg:gap-8">
+      <div>
+        <std-input type="email" formControlName="email" label="Correo electrónico" placeholder="Ingresa el correo autorizado en el contrato" />
+      </div>
+      <div class="flex flex-col">
+        <std-button label="Siguiente" [disabled]="form.invalid || isLoading" (clickEvent)="onSubmit()" [loading]="isLoading" />
+      </div>
+    </div>
+  </form>
+</div>

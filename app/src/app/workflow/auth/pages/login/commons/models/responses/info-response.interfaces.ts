@@ -25,3 +25,13 @@ export interface Key {
     channel: Channel;
     keyboard: Keyboard;
   }
+
+  export interface IOtpResponse {
+    [key:string]: string
+  }
+
+  export interface IOtpValidateResponse {
+    code: string;
+    message: string;
+  }
+  

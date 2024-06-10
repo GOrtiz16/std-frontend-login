@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { StdSkeletonHeaderModule } from '../std-skeleton-header/std-skeleton-header.module';
+
 import { StdHomeHeaderComponent } from './std-home-header.component';
 
 @NgModule({
@@ -8,7 +10,9 @@ import { StdHomeHeaderComponent } from './std-home-header.component';
     StdHomeHeaderComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+
+    StdSkeletonHeaderModule
   ],
   exports: [
     StdHomeHeaderComponent

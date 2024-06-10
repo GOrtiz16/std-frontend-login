@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StdHomeSidebarComponent } from './std-home-sidebar.component';
+import { StdSkeletonSidebarModule } from '../std-skeleton-sidebar/std-skeleton-sidebar.module';
 
+import { StdHomeSidebarComponent } from './std-home-sidebar.component';
 
 @NgModule({
   declarations: [
     StdHomeSidebarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+
+    StdSkeletonSidebarModule
   ],
   exports: [
     StdHomeSidebarComponent

@@ -14,7 +14,7 @@ export class ChangePasswordService {
 
   changePassword(request: IChangePasswordRQ): Observable<IChangePasswordRP> {
     return this.http.post<IChangePasswordRP>(
-        `${environment.apiStd.baseURLChangePassword}${environment.apiStd.servicePath.changePassword}`,
+        `${environment.apiStdLogin.ip}${environment.apiStdLogin.api_update_password}`,
         request,
         { headers: this.getToken('14bf1deb-60c4-46c1-a2f1-adb501fe759e') }
       );

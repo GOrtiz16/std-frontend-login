@@ -1,11 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
 
 import { ILoginUserRequest } from '../../models/requests/login-user-request.interface';
-import { ILoginUserResponse } from '../../models/responses/login-user-response.interface';
+import { IAuthenticationResponse } from '../../models/responses/login-user-response.interface';
 
 import { environment } from 'src/environments/environment';
+
+export class IHttpErrorResponse extends HttpErrorResponse {
+  code: string = '';
+  description: string = '';
+
+  constructor(error: any, status: number, statusText: string, headers: any, code: string, description: string) {
+    super({error, status, statusText, headers});
+    this.code = code || '';
+    this.description = description || '';
+  }
+}
 
 @Injectable({
   providedIn: 'root',
@@ -13,20 +24,20 @@ import { environment } from 'src/environments/environment';
 export class LoginService {
   constructor(private http: HttpClient) {}
 
-  loginUser(request: ILoginUserRequest): Observable<ILoginUserResponse> {
+  loginUser(request: ILoginUserRequest): Observable<IAuthenticationResponse> {
     const  {seed, password} = request;
     const loginForm = {
       seed,
-      userCredentialId: request.username,
+      userCredentialId: request.userCredentialId,
       password: {
         SelectedKey: password,
       },
     };
-    return environment.mockFront ?
-    this.mockFront(request.username)
+    return environment.apiStdLogin.mock ?
+    this.mockFront(request.userCredentialId)
     :
-    this.http.post<ILoginUserResponse>(
-      `${environment.apiStd.baseURLLogin}${environment.apiStd.servicePath.loginUser}`,
+    this.http.post<IAuthenticationResponse>(
+      `${environment.apiStdLogin.ip}${environment.apiStdLogin.api_authentication}`,
       loginForm,
       { headers: this.getToken('14bf1deb-60c4-46c1-a2f1-adb501fe759e') }
     );
@@ -40,10 +51,63 @@ export class LoginService {
     return headers;
   }
 
-  mockFront (password: string) : Observable<ILoginUserResponse>{
-    let response = {} as ILoginUserResponse;
+  mockFront (password: string) : Observable<IAuthenticationResponse>{
+    let response = {} as IAuthenticationResponse;
+    const customError461 = new IHttpErrorResponse(
+      403,
+      404, 
+      '', 
+      null, 
+      'ERR461', 
+      'session-expired'
+    );
+
+    const customError462 = new IHttpErrorResponse(
+      403,
+      404, 
+      '', 
+      null, 
+      'ERR462', 
+      'maintenance' 
+    );
+
+    const customError463 = new IHttpErrorResponse(
+      403,
+      404, 
+      '', 
+      null, 
+      'ERR463', 
+      'active-session-other-browser' 
+    );
+
+
+    const customError464 = new IHttpErrorResponse(
+      403,
+      404, 
+      '', 
+      null, 
+      'ERR464', 
+      'session-closed' 
+    );
+ 
+
+    
     switch (password) {
       //HU1. Escenario 1 - Ingreso correcto de usuario nuevo con clave de 4 dígitos generada por el banco
+      case "escenario0":
+        response = {
+          credentialOwner: {
+            isFirstLogin: false,
+            success: true,
+            retry: 0,
+            
+          },
+          sessionToken: {
+            auth: '',
+            refresh: '',
+          }
+        }
+      break;  
       case "escenario1":
         response = {
           credentialOwner: {
@@ -100,6 +164,30 @@ export class LoginService {
                 }
               } 
               break;
+              case "escenario5":
+                response = {
+                  credentialOwner: {
+                    isFirstLogin: false,
+                    success: false,
+                    retry: -2,
+                    
+                  },
+                  sessionToken: {
+                    auth: '',
+                    refresh: '',
+                  }
+                } 
+                break;
+
+                case "escenario6":
+                  return throwError(() => customError461)
+                case "escenario7":
+                  return throwError(() => customError462)
+                case "escenario8":
+                  return throwError(() => customError463)
+                case "escenario9":
+                  return throwError(() => customError464)
+
       default:
         break;
     }

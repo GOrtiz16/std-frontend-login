@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StdAlertComponent } from './std-alert.component';
+import { StdAuthLoadingComponent } from './std-auth-loading.component';
 
-describe('StdAlertComponent', () => {
-  let component: StdAlertComponent;
-  let fixture: ComponentFixture<StdAlertComponent>;
+describe('StdAuthLoadingComponent', () => {
+  let component: StdAuthLoadingComponent;
+  let fixture: ComponentFixture<StdAuthLoadingComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StdAlertComponent]
+      declarations: [StdAuthLoadingComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(StdAlertComponent);
+
+    fixture = TestBed.createComponent(StdAuthLoadingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

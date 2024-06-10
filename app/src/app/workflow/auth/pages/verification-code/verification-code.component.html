@@ -1,50 +1,37 @@
 <div class="flex flex-col justify-between min-h-screen pt-14 lg:pt-18">
   <div>
-    <std-stepper
-    title="Crea tu contraseña"
-    description="Para activar tu cuenta en la plataforma, sigue los siguientes pasos">
-      <std-stepper-item 
-        step=1
-        label="Nueva contraseña" 
-        status="complete">
-      </std-stepper-item>
-      <std-stepper-item
-        step=2
-        label="Código de verificación"
-        status="active">
-      </std-stepper-item>
+    <std-stepper label="Crea tu contraseña" description="Para activar tu cuenta en la plataforma, sigue los siguientes pasos">
+      <std-stepper-item step="1" label="Nueva contraseña" status="complete"> </std-stepper-item>
+      <std-stepper-item step="2" label="Código de verificación" status="active"> </std-stepper-item>
     </std-stepper>
     <section class="px-4 lg:px-6 pt-8 pb-20 lg:py-12">
-      <form [formGroup]="verificationCodePresenter.form">
+      <form [formGroup]="form">
         <div class="flex flex-col gap-8 lg:gap-11 w-full max-w-xl mx-auto">
-          <std-alert class="mb-20" type="info">
-            <span>Hemos enviado el código de verificación al correo m********{{ '@' }}multiplica.com</span>
-          </std-alert>
+          <std-toast #toast class="mb-20" status="info"></std-toast>
           <div class="flex flex-col gap-6 lg:gap-8">
             <div class="flex flex-col gap-1 w-full max-w-[14.5rem] mx-auto">
-              <std-pin-input formControlName="pinCode"></std-pin-input>
+              <std-pin-input #pinInput formControlName="pinCode"></std-pin-input>
             </div>
             <div>
-              <div class="flex flex-col items-center text-center">
-                <std-countdown
-                  label="Este código expirará en"
-                  position="center"
-                ></std-countdown>
+              <div class="flex flex-col items-center text-center h-10 justify-center">
+                <div *ngIf="!isTimeUp" class="flex flex-col items-center text-right">
+                  <span class="text-xs">Este código expirará en</span>
+                  <div class="flex items-center gap-1">
+                    <i class="icon-time text-primary"></i>
+                    <span class="font-headline font-bold">0{{ countdownMinutes }}:{{ countdownSeconds < 10 ? '0' + countdownSeconds : countdownSeconds }}</span>
+                  </div>
+                </div>
+
+                <std-link *ngIf="isTimeUp" label="Generar y enviar nuevo código" (clickEvent)="resendCode()"></std-link>
               </div>
             </div>
           </div>
           <div class="flex flex-col items-center">
-            <std-button 
-              label="Finalizar" 
-              (clickEvent)="onClickFinalize()"
-              [disabled]="verificationCodePresenter.form.invalid"
-            ></std-button>
+            <std-button label="Finalizar" (clickEvent)="onSubmit()" [disabled]="form.invalid || isTimeUp || isLoading" [loading]="isLoading"></std-button>
           </div>
         </div>
       </form>
     </section>
   </div>
-  <std-login-footer 
-    [centered]="true"
-  ></std-login-footer>
+  <std-login-footer [centered]="true"></std-login-footer>
 </div>

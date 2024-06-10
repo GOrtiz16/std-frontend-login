@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 
 import { environment } from 'src/environments/environment';
-import { IInfoChannelResponse } from '../../models/responses/info-response.interfaces';
+import { IOtpResponse } from '../../models/responses/info-response.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +12,10 @@ import { IInfoChannelResponse } from '../../models/responses/info-response.inter
 export class OtpService {
   constructor(private http: HttpClient) {}
 
-  sendOtpCode(request:{}): Observable<IInfoChannelResponse> {
+  sendOtpCode(request:{}): Observable<IOtpResponse> {
   
-    return this.http.post<IInfoChannelResponse>(
-        `${environment.apiStd.baseURLOTP }${environment.apiStd.servicePath.otpUser}`,
+    return this.http.post<IOtpResponse>(
+        `${environment.apiStdLogin.ip }${environment.apiStdLogin.api_send_otp}`,
         request,
         { headers: this.getToken('14bf1deb-60c4-46c1-a2f1-adb501fe759e') }
       );

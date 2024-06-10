@@ -1,3 +1,6 @@
+@if (loading) {
+  <std-skeleton-sidebar></std-skeleton-sidebar>
+} @else {
 <aside class="js-sidebar css-sidebar absolute lg:static bottom-0 lg:bottom-auto lg:top-0 w-full lg:w-[22.125rem] h-full bg-alternative-light -translate-x-full lg:translate-x-0 transition-all duration-500 z-[12]">
     <div class="lg:px-6 lg:h-[72px] css-toggle-sidebar hidden lg:flex items-center">
         <svg class="w-32 lg:w-36 text-primary hidden-collapse" viewBox="0 0 137 30" fill="none">
@@ -23,8 +26,11 @@
                             SA
                         </div>
                         <div class="text-center lg:text-left hidden-collapse">
-                            <p class="font-bold text-dark">Hola, Bruno</p>
-                            <p class="text-soft font-bold text-xs">Firmante</p>
+                            <p class="font-bold text-dark">Hola, 
+                               <span [innerHTML]="person.givenName"></span>     
+
+                            </p>
+                            <p class="text-soft font-bold text-xs" [innerHTML]="profiles.name"></p>
                         </div>
                     </div>
                 </div>
@@ -202,3 +208,4 @@
       </div>
     </div>
 </button>
+}

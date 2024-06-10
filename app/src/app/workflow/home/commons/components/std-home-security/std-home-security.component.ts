@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './std-home-security.component.scss'
 })
 export class StdHomeSecurityComponent {
-	showModal = true;
+	showModal = false;
 
   closeSession() {
     this.closeModal();

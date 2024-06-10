@@ -1,4 +1,4 @@
-export interface ILoginUserResponse {
+export interface IAuthenticationResponse {
   credentialOwner: {
     isFirstLogin: boolean;
     retry: number;
@@ -10,13 +10,20 @@ export interface ILoginUserResponse {
   };
 }
 
-export interface ILoginUserResponseError {
-  error: {
-    error: {
-      code: string;
-      message: string;
-      level: string;
-      description: string;
-    };
-  };
+export interface IAuthenticationResponseError {
+    code: string;
+    message: string;
+    level: string;
+    description: string;
+}
+
+
+export interface IChannelInfoResponseError {
+  code: string;
+  message: string;
+  level: string;
+  description: string;
+}
+export interface IChannelInfoResponseErrors {
+  errors: IChannelInfoResponseError[]
 }

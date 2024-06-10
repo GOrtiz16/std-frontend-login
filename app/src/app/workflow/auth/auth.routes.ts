@@ -23,6 +23,11 @@ export const ROUTES: Routes = [
         component: VerificationCodeComponent
       },
       {
+        path: 'password-recovery',
+        loadChildren: () =>
+          import('./pages/password-recovery/password-recovery.module').then((m) => m.PasswordRecoveryModule)
+      },
+      {
         path: '',
         redirectTo: 'login',
         pathMatch: 'full'

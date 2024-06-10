@@ -17,7 +17,8 @@ module.exports = {
         DEFAULT: '#127277',
         light: '#f5f9fb',
         medium: '#CEDEE7',
-        dark: '#0d5155'
+        dark: '#0d5155',
+        strong: '#deedf2'
       },
       info: {
         DEFAULT: '#23779a',
@@ -35,13 +36,23 @@ module.exports = {
         DEFAULT: '#990000',
         light: '#fee5e5'
       },
+      gradient: {
+        DEFAULT: '#EAEAEA',
+        to: '#DADADA'
+      },
       focus: '#3366FF',
       white: '#ffffff',
       soft: '#727272',
       dark: '#222222',
+      medium: '#2C2A29',
+      neutral: {
+        DEFAULT: '#A2A2A2'
+      },
+      notifications: 'rgba(34, 34, 34, 0.04)',
       transparent: 'transparent',
       current: 'currentColor'
     },
+
     fontFamily: {
       sans: [
         'Santander Micro Text',
@@ -62,7 +73,9 @@ module.exports = {
       backgroundImage: {
         'checkbox-checked': 'url("/images/svg/checkbox-checked.svg")',
         'checkbox-readonly': 'url("/images/svg/checkbox-readonly.svg")',
-        'checkbox-disabled': 'url("/images/svg/checkbox-disabled.svg")'
+        'checkbox-disabled': 'url("/images/svg/checkbox-disabled.svg")',
+        'radio-checked': 'url("/images/svg/radio-checked.svg")',
+        'radio-error': 'url("/images/svg/radio-error.svg")'
       },
       boxShadow: {
         button: '0 1px 6px 0 rgba(163, 163, 163, 0.4)',

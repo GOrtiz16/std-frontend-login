@@ -1,13 +1,15 @@
-<div class="flex flex-col lg:flex-row lg:flex-wrap min-h-screen lg:h-screen lg:border-t-8 lg:border-t-primary">
-  <std-home-sidebar></std-home-sidebar>
+<div class="flex flex-col lg:flex-row lg:flex-wrap min-h-screen lg:h-screen lg:border-t-8"
+  [class.lg:border-t-primary]="!loading"
+  [class.lg:border-t-border-default]="loading">
+  <std-home-sidebar [person]="personData" [profiles]="profilesData" [loading]="loading"></std-home-sidebar>
   
   <div class="grow flex flex-col w-full lg:w-[calc(100%-22.125rem)] lg:h-full lg:overflow-y-auto lg:py-0">
-    <main>
-      <std-home-header></std-home-header>
-      
+    <main class="grow">
+      <std-home-header [currencyPriceReference]="currencyPriceReferenceData" [companies]="companiesData" [loading]="loading"></std-home-header>
+
       <router-outlet></router-outlet>
     </main>
-    
+
     <std-home-footer></std-home-footer>
   </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { TimerSessionService } from '../../services/time-service/timersession.service';
 
 type TPosition = 'end' | 'center';
 
@@ -17,30 +18,23 @@ export class CountdownComponent implements OnInit {
   showModal = false;
   sizeModal = 'm';
 
-  constructor() {}
-
-  ngOnInit(): void {
-    this.startCountdown();
+  timerPrinted = ''
+  constructor(private sts: TimerSessionService){
   }
+  ngOnInit() {
+    this.sts.getTimeLeft().subscribe(v => {
+      this.timerPrinted = v;
+    });
 
-  startCountdown() {
-    this.interval = setInterval(() => {
-      if (this.countdownSeconds > 0) {
-        this.countdownSeconds--;
-        if (this.countdownSeconds == 0 && this.countdownMinutes == 0) {
-          clearInterval(this.interval);
-          this.openModal();
-        }
-      } else {
-        if (this.countdownMinutes > 0) {
-          this.countdownMinutes--;
-          this.countdownSeconds = 59;
-        }
-      }
-    }, 1000);
+    this.sts.onTimerEnd().subscribe(v => {
+      this.openModal();
+    });
+
   }
 
   closeModal() {
+    this.sts.resetTimer();
+    this.sts.startTimer();
     this.showModal = false;
   }
 
