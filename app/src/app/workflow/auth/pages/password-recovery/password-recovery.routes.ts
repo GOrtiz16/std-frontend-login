@@ -1,20 +1,28 @@
 import { Routes } from '@angular/router';
 import { PasswordRecoveryComponent } from './password-recovery.component';
-import { Step1Component } from './step1/step1.component';
-import { Step2Component } from './step2/step2.component';
-import { Step3Component } from './step3/step3.component';
+import { EmailEntryComponent } from './components/email-entry/email-entry.component';
+import { OtpVerificationComponent } from './components/otp-verification/otp-verification.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { otpVerificationGuard } from './guard/otp-verification.guard';
+import { passwordResetGuard } from './guard/password-reset.guard';
 
 export const routes: Routes = [
   {
     path: 'password-recovery',
     component: PasswordRecoveryComponent,
     children: [
-      { path: '', redirectTo: 'step1', pathMatch: 'full' },
-      // { path: 'step1', loadChildren: () => import('./step1/step1.module').then((m) => m.Step1Module) },
-      { path: 'step1', component: Step1Component },
-      { path: 'step2', component: Step2Component },
-      { path: 'step3', component: Step3Component },
-      { path: '**', redirectTo: 'step1' }
+      { path: '', redirectTo: 'email-entry', pathMatch: 'full' },
+      { path: 'email-entry', component: EmailEntryComponent },
+      {
+        path: 'otp-verification',
+        component: OtpVerificationComponent,
+        canActivate: [otpVerificationGuard]
+      },
+      { path: 'password-reset',
+        component: PasswordResetComponent,
+        canActivate: [passwordResetGuard]
+      },
+      { path: '**', redirectTo: 'email-entry' }
     ]
   }
 ];

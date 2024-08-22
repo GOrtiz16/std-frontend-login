@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router';
-
 import { AuthComponent } from './auth.component';
-import { LoginComponent } from './pages/login/login.component';
 import { SetPasswordComponent } from './pages/set-password/set-password.component';
 import { VerificationCodeComponent } from './pages/verification-code/verification-code.component';
 
@@ -12,7 +10,7 @@ export const ROUTES: Routes = [
     children: [
       {
         path: 'login',
-        component: LoginComponent
+        loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
       },
       {
         path: 'set-password',

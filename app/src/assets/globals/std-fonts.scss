@@ -53,7 +53,25 @@
 
 /* End Family Fonts Mx */
 
+html {
+  @apply text-dark;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-headline;
+}
+
+@media (max-width: 1023px) {
+  .button-not-icon i {
+    @apply hidden;
+  }
+}
+
 body {
-  font-family: 'Santander Headline', sans-serif;
   margin: 0;
 }

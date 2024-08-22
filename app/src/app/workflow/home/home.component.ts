@@ -1,7 +1,15 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { delay, map, of, switchMap, tap } from 'rxjs';
 import { HomeShellService } from './commons/services/home-shell.service';
-import { IHomeShellResponseOK, IHomeShellResponseError, IPerson, IProfile, ICurrencyPriceReference, ICompany } from './commons/services/home-shell.interfaces';
+import {
+  IHomeShellResponseOK,
+  IHomeShellResponseError,
+  IPerson,
+  IProfile,
+  ICurrencyExchange,
+  ICompany
+} from './commons/services/home-shell.interfaces';
+import { TimerService } from 'src/app/shared/core/timer-manager/timer-manager.service';
 
 @Component({
   selector: 'app-home',
@@ -9,40 +17,47 @@ import { IHomeShellResponseOK, IHomeShellResponseError, IPerson, IProfile, ICurr
 })
 export class HomeComponent implements OnInit {
   loading = true;
-  personData: IPerson = { personName: '', givenName: '', fullName: '' };
+  personData: IPerson = { givenName: '', fullName: '' };
   profilesData: IProfile = { roles: '', key: 0, name: '' };
-  currencyPriceReferenceData: ICurrencyPriceReference = { currency: '', salesPrice: 0, buyPrice: 0 };
-  companiesData: ICompany = { company: '', fullName: '', isHolding: false };
-  
-  constructor(
-    private homeShellService: HomeShellService
-  ){}
+  currencyPriceReferenceData: ICurrencyExchange = { exchangeRateSale: 0, exchangeRateBuy: 0 };
+  companiesData: Array<ICompany> = [];
+
+  constructor(private homeShellService: HomeShellService, private TimerService: TimerService) {}
+
   ngOnInit() {
-    this.doMainOrchestation().subscribe(()=>{})
+    this.initCounter();
+    this.initMainOrchestation().subscribe(
+      () => {},
+      () => {
+        this.hideLoader();
+      }
+    );
   }
-  
-  doMainOrchestation() {
+
+  initCounter() {
+    this.TimerService.startTimer();
+    this.TimerService.onTimerEnd().subscribe(() => {});
+  }
+
+  initMainOrchestation() {
     return of(undefined).pipe(
-      tap(() => {
-          this.showLoader()
-      }),
+      tap(() => this.showLoader()),
       switchMap(() => {
-        let request = {
-          "userCredentialId": "VNANDI"
-        }
+        let request = { userCredentialId: 'VNANDI' };
         return this.homeShellService.getShellinfo(request).pipe(
-          map((response: IHomeShellResponseOK) => {
-            this.setData(response)
-          },
-          (error: IHomeShellResponseError) => {}
-        ),
-        )
+          map(
+            (response: IHomeShellResponseOK) => {
+              this.setData(response);
+              const logintime = 120;
+              this.TimerService.setTime(logintime);
+            },
+            (error: IHomeShellResponseError) => {}
+          )
+        );
       }),
       delay(1500),
-      tap(() => {
-        this.hideLoader()
-      }),
-    )
+      tap(() => this.hideLoader())
+    );
   }
 
   showLoader() {
@@ -53,11 +68,9 @@ export class HomeComponent implements OnInit {
     this.loading = false;
   }
 
-  setData(response: IHomeShellResponseOK){
-    this.personData = response.person
-    this.profilesData = response.profiles
-    this.currencyPriceReferenceData = response.currencyPriceReference
-    this.companiesData = response.companies
+  setData(response: IHomeShellResponseOK) {
+    this.personData = response.person;
+    this.currencyPriceReferenceData = response.currencyExchange;
+    this.companiesData = response.customers;
   }
 }
-

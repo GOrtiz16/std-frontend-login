@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { StdSkeletonHeaderModule } from '../std-skeleton-header/std-skeleton-header.module';
@@ -6,16 +6,9 @@ import { StdSkeletonHeaderModule } from '../std-skeleton-header/std-skeleton-hea
 import { StdHomeHeaderComponent } from './std-home-header.component';
 
 @NgModule({
-  declarations: [
-    StdHomeHeaderComponent
-  ],
-  imports: [
-    CommonModule,
-
-    StdSkeletonHeaderModule
-  ],
-  exports: [
-    StdHomeHeaderComponent
-  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  declarations: [StdHomeHeaderComponent],
+  imports: [CommonModule, StdSkeletonHeaderModule],
+  exports: [StdHomeHeaderComponent]
 })
-export class StdHomeHeaderModule { }
+export class StdHomeHeaderModule {}

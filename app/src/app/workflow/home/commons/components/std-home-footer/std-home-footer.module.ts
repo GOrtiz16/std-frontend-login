@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { StdSkeletonFooterModule } from '../std-skeleton-footer/std-skeleton-footer.module';
@@ -6,6 +6,7 @@ import { StdSkeletonFooterModule } from '../std-skeleton-footer/std-skeleton-foo
 import { StdHomeFooterComponent } from './std-home-footer.component';
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     StdHomeFooterComponent
   ],

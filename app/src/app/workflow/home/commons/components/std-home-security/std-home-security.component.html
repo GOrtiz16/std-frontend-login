@@ -5,12 +5,12 @@
     <p>
       Por inactividad y para garantizar tu seguridad, tu sesión expirará en:
       <br />
-      <span class="font-headline font-bold">04:59</span>
+      <span class="font-headline font-bold">{{ timerPrinted }}</span>
     </p>
   </div>
 
   <div slot="footer" class="w-full flex justify-center gap-6">
-    <std-button label="Cerrar sesión" type="secondary" (clickEvent)="closeSession()"></std-button>
-    <std-button label="Seguir aquí" type="primary" (clickEvent)="closeModal()"></std-button>
+    <std-button label="Cerrar sesión" type="secondary" (clickEvent)="closeSessionByModal()"></std-button>
+    <std-button label="Seguir aquí" type="primary" (clickEvent)="continueSession()"></std-button>
   </div>
 </std-modal>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'std-auth-header',
@@ -10,7 +11,7 @@ export class StdAuthHeaderComponent implements OnInit {
   isLogin = false;
   isNotLogin = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private location: Location) {}
 
   ngOnInit() {
     this.verifyLogin();
@@ -21,5 +22,9 @@ export class StdAuthHeaderComponent implements OnInit {
       this.isLogin = location.pathname === '/login';
       this.isNotLogin = !this.isLogin;
     });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

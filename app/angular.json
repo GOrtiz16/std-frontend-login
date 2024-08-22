@@ -25,6 +25,11 @@
                 "glob": "**/*",
                 "input": "src/assets/fonts",
                 "output": "/assets/fonts"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets/images",
+                "output": "/assets/images"
               }
             ],
             "styles": ["src/styles.scss"],
@@ -56,6 +61,17 @@
                   "with": "src/environments/environment.development.ts"
                 }
               ]
+            },
+            "uat": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.uat.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -68,6 +84,9 @@
             },
             "development": {
               "buildTarget": "std-frontend-login:build:development"
+            },
+            "uat": {
+              "buildTarget": "std-frontend-login:build:uat"
             }
           },
           "defaultConfiguration": "development"

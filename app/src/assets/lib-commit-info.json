@@ -1,0 +1,13 @@
+{
+  "built": "2024-08-09 10:21:46",
+  "appName": "stencil-library",
+  "appVersion": "0.0.6",
+  "stencil": "v4.7.0",
+  "commit": {
+    "branch": "feature/develop",
+    "hash": "a9c6208c43b85c11b298ea280bbeb90da3645533",
+    "comment": "fix(std-button): fix spinner animation (jose ch.)",
+    "auth": "Richard Pantoja (rpantoja_ntt@santander.com.pe)",
+    "date": "2024-08-09 10:17:26 -0500"
+  }
+}

@@ -1,14 +1,20 @@
 {
   "name": "std-frontend-login",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "scripts": {
-    "dev": "ng serve --configuration development",
     "start": "ng serve",
-    "build": "ng build",
+    "start:dev": "ng serve --configuration development",
+    "start:uat": "ng serve --configuration uat",
+    "build": "npm run prebuild-components && npm run prebuild && ng build",
+    "build:dev": "npm run prebuild-components && npm run prebuild && ng build --configuration development",
+    "build:uat": "npm run prebuild-components && npm run prebuild && ng build --configuration uat",
+    "build:prd": "npm run prebuild-components && npm run prebuild && ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:coverage": "ng test --code-coverage",
-    "libs": "npm uninstall stencil-library && npm i -D ./stencil-library/stencil-library-0.0.1.tgz --force"
+    "libs": "npm uninstall stencil-library && npm i ./stencil-library/stencil-library-0.0.8.tgz -D",
+    "prebuild": "node commit-info.js",
+    "prebuild-components": "node copy-commit-info.js"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +27,7 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
+    "js-base64": "^3.7.7",
     "libs": "^0.1.2",
     "lottie-web": "^5.12.2",
     "ngx-captcha": "^13.0.0",
@@ -32,6 +39,7 @@
     "@angular-devkit/build-angular": "^17.3.6",
     "@angular/cli": "^17.3.6",
     "@angular/compiler-cli": "^17.3.0",
+    "@tailwindcss/forms": "^0.5.7",
     "@types/jasmine": "~5.1.0",
     "autoprefixer": "^10.4.19",
     "jasmine-core": "~5.1.0",
@@ -41,7 +49,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "postcss": "^8.4.38",
-    "stencil-library": "file:stencil-library/stencil-library-0.0.1.tgz",
+    "stencil-library": "file:stencil-library/stencil-library-0.0.8.tgz",
     "tailwindcss": "^3.4.3",
     "typescript": "~5.4.2"
   }

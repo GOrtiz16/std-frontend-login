@@ -1,23 +1,24 @@
-import { Keyboard } from 'src/app/workflow/auth/pages/login/commons/models/responses/info-response.interfaces';
+import { Keyboard } from '../../workflow/auth/pages/login/interfaces/info-response.interfaces';
+
 export class KeyBoardHelper {
-  keyboard: Keyboard = {seed:'', keys:[]};
+  keyboard: Keyboard = { seed: '', keys: [] };
 
-  setKeyBoard(keyboard: Keyboard){
+  setKeyBoard(keyboard: Keyboard) {
     this.keyboard = keyboard;
-  } 
-  getSeed(){
-    return this.keyboard ? this.keyboard.seed: "NO-SEED-INCLUDE";
   }
+
+  getSeed() {
+    return this.keyboard ? this.keyboard.seed : 'NO-SEED-INCLUDE';
+  }
+
   getPasswordHash(password: string): string[] {
-    let arrayOfHash = [];
-
-    if(!this.keyboard?.keys) return [''];
-
-    for (let char of password) {
-      let hash = this.keyboard.keys.find(item => item.value === char); 
-      arrayOfHash.push(hash?.id);
+    if (!this.keyboard?.keys) {
+      return [''];
     }
-    return arrayOfHash as [];
-  }
 
+    const keyMap = new Map(this.keyboard.keys.map((item) => [item.value, item.id]));
+    const arrayOfHash = password.split('').map((char) => keyMap.get(char) || '');
+
+    return arrayOfHash;
+  }
 }

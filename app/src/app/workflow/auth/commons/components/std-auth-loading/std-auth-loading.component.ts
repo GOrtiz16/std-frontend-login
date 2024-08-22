@@ -10,21 +10,19 @@ type TType = 'normal' | 'percentage';
   styleUrl: './std-auth-loading.component.scss'
 })
 export class StdAuthLoadingComponent implements AfterViewInit {
-
   @Input() type: TType = 'normal';
 
   @ViewChild('loaderIcon') bigLoaderIconContaner!: ElementRef<HTMLDivElement>;
 
-  ngAfterViewInit() {    
+  ngAfterViewInit() {
     if (this.bigLoaderIconContaner) {
-      const animation = lottie.loadAnimation({
+      lottie.loadAnimation({
         container: this.bigLoaderIconContaner.nativeElement,
         renderer: 'svg',
         loop: true,
         autoplay: true,
-        path: 'assets/json/bigLoader.json',
+        path: 'assets/json/bigLoader.json'
       });
     }
   }
-
 }

@@ -1,40 +1,36 @@
-  export interface IPerson {
-    personName: string;
-    givenName: string;
-    fullName: string;
-  }
-  
-  export interface ICurrencyPriceReference {
-    currency: string;
-    salesPrice: number;
-    buyPrice: number;
-  }
-  
-  export interface ICompany {
-    company: string;
-    fullName: string;
-    isHolding: boolean;
-  }
-  
-  export interface IProfile {
-    roles: string;
-    key: number;
-    name: string;
-  }
-  
-  export interface IHomeShellResponseOK {
-    person: IPerson;
-    currencyPriceReference: ICurrencyPriceReference;
-    companies: ICompany;
-    profiles: IProfile;
-  }
-
-  export interface IHomeShellResponseError {
-    code: string;
-    message: string;
-    level: string;
-    description: string;
+export interface IPerson {
+  givenName: string;
+  fullName: string;
 }
 
-  
- 
+export interface ICurrencyExchange {
+  exchangeRateSale: number;
+  exchangeRateBuy: number;
+}
+
+export interface ICompany {
+  fullName: string;
+  customerId: string; // ejm: '20100065038' (Company RUC),
+  customerIdType: number; // ejm: 2 (RUC)
+  isHolding: boolean;
+  profiles: Array<any>;
+}
+
+export interface IProfile {
+  roles: string;
+  key: number;
+  name: string;
+}
+
+export interface IHomeShellResponseOK {
+  person: IPerson;
+  currencyExchange: ICurrencyExchange;
+  customers: Array<ICompany>;
+}
+
+export interface IHomeShellResponseError {
+  code: string;
+  message: string;
+  level: string;
+  description: string;
+}

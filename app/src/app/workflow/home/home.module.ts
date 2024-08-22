@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -11,9 +11,8 @@ import { HomeComponent } from './home.component';
 import { ROUTES } from './home.routes';
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  declarations: [HomeComponent],
   imports: [
     CommonModule,
     StdHomeSidebarModule,
@@ -24,4 +23,4 @@ import { ROUTES } from './home.routes';
     RouterModule.forChild(ROUTES)
   ]
 })
-export class HomeModule { }
+export class HomeModule {}

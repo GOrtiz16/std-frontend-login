@@ -46,13 +46,17 @@ module.exports = {
       dark: '#222222',
       medium: '#2C2A29',
       neutral: {
-        DEFAULT: '#A2A2A2'
+        DEFAULT: '#A2A2A2',
+        light: '#F0F0F0',
+        medium: '#444444'
       },
+      labeldisabled: 'rgba(34, 34, 34, 0.23)',
       notifications: 'rgba(34, 34, 34, 0.04)',
       transparent: 'transparent',
-      current: 'currentColor'
+      current: 'currentColor',
+      disabledselect: 'rgba(34, 34, 34, 0.06)',
+      seasalt: '#F8F8F8'
     },
-
     fontFamily: {
       sans: [
         'Santander Micro Text',
@@ -72,9 +76,13 @@ module.exports = {
     extend: {
       backgroundImage: {
         'checkbox-checked': 'url("/images/svg/checkbox-checked.svg")',
+        'checkbox-checked-minus':
+          'url("/images/svg/checkbox-checked-minus.svg")',
         'checkbox-readonly': 'url("/images/svg/checkbox-readonly.svg")',
         'checkbox-disabled': 'url("/images/svg/checkbox-disabled.svg")',
         'radio-checked': 'url("/images/svg/radio-checked.svg")',
+        'radio-checked-disabled':
+          'url("/images/svg/radio-checked-disabled.svg")',
         'radio-error': 'url("/images/svg/radio-error.svg")'
       },
       boxShadow: {
@@ -97,5 +105,6 @@ module.exports = {
       }
     }
   },
-  plugins: []
+  safelist: ["after:content-['S/']'", "peer-checked:after:content-['$']"],
+  plugins: [require('@tailwindcss/forms')]
 };

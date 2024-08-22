@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'std-home-footer',
@@ -6,15 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './std-home-footer.component.scss'
 })
 export class StdHomeFooterComponent implements OnInit {
-  loading = true;
+  @Input() loading = true;
 
-  ngOnInit() {
-    this.verifyLoading();
-  }
-
-  verifyLoading() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 1500)
-  }
+  ngOnInit() {}
 }

@@ -9,16 +9,22 @@ import { AuthComponent } from './auth.component';
 import { ROUTES } from './auth.routes';
 import { VerificationCodeModule } from './pages/verification-code/verification-code.module';
 import { PasswordRecoveryModule } from './pages/password-recovery/password-recovery.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../../core/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [AuthComponent],
   imports: [
+    HttpClientModule,
     CommonModule,
     StdAuthHeaderModule,
     StdAuthLoadingModule,
     VerificationCodeModule,
     PasswordRecoveryModule,
     RouterModule.forChild(ROUTES)
-  ]
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
 })
 export class AuthModule {}
