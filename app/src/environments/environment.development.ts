@@ -3,7 +3,7 @@ export const environment: any = {
   environment: 'local',
   apiStdLogin: {
     mock: true,
-    ip: 'http://10.0.50.10:80/',
+    ip: 'http://10.2.0.10:80/',
     api_info_canal: 'api/mf/v1/login/info',
     api_authentication: 'api/mf/v1/login/authentication',
     api_update_password: 'api/mf/v1/login/password/update',
@@ -16,7 +16,7 @@ export const environment: any = {
   },
   apiStdHome: {
     mock: true,
-    ip: 'http://10.0.50.10:80/',
+    ip: 'http://10.2.0.10:80/',
     positionacc: 'mf/positionacc',
     api_home_shell: 'api/mf/v1/home/session'
   },
