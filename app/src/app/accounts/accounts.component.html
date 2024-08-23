@@ -1,0 +1,125 @@
+<div class="flex flex-col justify-center gap-2.5 p-4 lg:px-6">
+  <std-banner-ads>
+    <std-slider [slides]="slides"> </std-slider>
+  </std-banner-ads>
+
+  <std-banner label="Cuentas">
+    <std-breadcrumbs-item label="Cuentas"></std-breadcrumbs-item>
+  </std-banner>
+
+  <div class="flex flex-col gap-6 lg:flex-row lg:justify-between lg:items-end">
+    <div class="flex flex-col gap-2">
+      <h3 class="text-dark font-bold text-2xl hidden lg:block">Cuentas Corrientes y de Ahorros</h3>
+      <p class="text-dark text-sm">Aquí podrás ver tus <span class="font-bold">cuentas activas</span>, copiar sus datos, revisar sus movimientos y descargar estados de cuenta.</p>
+    </div>
+    <div class="flex gap-4 lg:w-2/5 lg:justify-end">
+      <std-button size="s" label="Ver detalle de cuentas" icon="chevron-right " classes="w-2/4 lg:w-auto button-not-icon" (clickEvent)="goToAccountSelect()"></std-button>
+      <std-button size="s" label="Filtrar" icon="filter" type="secondary" classes="lg:hidden w-2/4" data-modal="modal-filters"></std-button>
+    </div>
+  </div>
+
+  <div class="bg-info-light rounded-2xl p-6 hidden lg:flex flex-row items-end gap-6">
+    <std-select show-label label="Tipos de cuentas" placeholder="Todos los tipos de cuentas">
+      <ul class="w-full py-2 overflow-y-auto max-h-[304px]">
+        <li class="py-3">
+          <std-checkbox label="Seleccionar todas (2)" checked></std-checkbox>
+        </li>
+        <li class="py-3">
+          <std-checkbox label="Corrientes" checked></std-checkbox>
+        </li>
+        <li class="py-3">
+          <std-checkbox label="Ahorros" checked></std-checkbox>
+        </li>
+      </ul>
+    </std-select>
+
+    <std-select show-label label="Cuentas" placeholder="Todas las cuentas">
+      <div class="py-4">
+        <std-input type="search" placeholder="Buscar"></std-input>
+      </div>
+      <ul class="w-full py-2 overflow-y-auto max-h-[304px]">
+        <li class="py-3">
+          <std-checkbox label="Seleccionar todas ({{ accounts.length }})" checked></std-checkbox>
+        </li>
+        <li *ngFor="let account of accounts" class="py-3 flex items-center gap-2">
+          <std-checkbox checked />
+          <div>
+            <p class="font-bold text-dark text-sm leading-5">{{ account.accountName }}</p>
+            <p class="text-dark text-sm leading-5">{{ account.accountCurrency }} {{ account.accountNumber }}</p>
+          </div>
+        </li>
+      </ul>
+    </std-select>
+
+    <std-select show-label label="Monedas" placeholder="Todas las monedas">
+      <ul class="w-full py-2 overflow-y-auto max-h-[304px]">
+        <li class="py-3">
+          <std-checkbox label="Seleccionar todas (2)" checked></std-checkbox>
+        </li>
+        <li class="py-3">
+          <std-checkbox label="Soles" checked></std-checkbox>
+        </li>
+        <li class="py-3">
+          <std-checkbox label="Dólares" checked></std-checkbox>
+        </li>
+      </ul>
+    </std-select>
+
+    <div class="flex items-center gap-6">
+      <std-button icon="search" type="secondary" classes="!min-w-12 w-12 h-12"></std-button>
+      <std-link label="Limpiar" icon="trash-bin" icon-position="left"></std-link>
+    </div>
+  </div>
+
+  <std-table>
+    <div slot="tableTh">
+      <std-table-th title-th="Tipo de Cuenta" icon> </std-table-th>
+      <std-table-th title-th="Cuenta" icon></std-table-th>
+      <std-table-th title-th="Moneda" icon></std-table-th>
+      <std-table-th title-th="Saldo disponible" icon position-classes="justify-end"></std-table-th>
+      <std-table-th title-th="Saldo contable" icon position-classes="justify-end"></std-table-th>
+      <std-table-th title-th="Saldo diferido" icon position-classes="justify-end"></std-table-th>
+      <std-table-th title-th="Saldo retenido" icon position-classes="justify-end"></std-table-th>
+    </div>
+  </std-table>
+  <table class="w-full text-sm text-left">
+    <tbody>
+      <tr *ngFor="let account of accounts" class="bg-white hover:bg-alternative-light w-full border-b border-alternative-medium">
+        <td class="py-3 px-4 lg:table-cell">
+          <p class="text-dark text-sm leading-5">{{ account.accountType }}</p>
+        </td>
+        <td class="py-3 px-4 flex justify-between items-center lg:table-cell">
+          <div>
+            <p class="font-bold text-dark text-sm leading-5 lg:text-ellipsis lg:whitespace-nowrap lg:max-w-[150px] lg:overflow-hidden">{{ account.accountName }}</p>
+            <p class="text-dark text-sm leading-5">{{ account.accountCurrency + ' ' + account.accountNumber }}</p>
+          </div>
+          <a href="detalle-cuentas-mobile_v2">
+            <i class="icon-chevron-right text-primary text-2xl leading-none cursor-pointer lg:hidden"></i>
+          </a>
+        </td>
+        <td class="py-3 px-4 text-center lg:table-cell">
+          <div class="text-sm leading-5 bg-success-light text-success rounded-sm h-5 text-center inline-block px-2">{{ account.currencyType }}</div>
+        </td>
+        <td class="py-3 px-4 text-right lg:table-cell">
+          <p class="text-dark text-sm leading-5">{{ account.symbol }} {{ account.availableBalance | number : '1.2-2' }}</p>
+        </td>
+        <td class="py-3 px-4 text-right lg:table-cell">
+          <p class="text-dark text-sm leading-5">{{ account.symbol }} {{ account.countableBalance | number : '1.2-2' }}</p>
+        </td>
+        <td class="py-3 px-4 text-right lg:table-cell">
+          <p class="text-dark text-sm leading-5">{{ account.symbol }} {{ account.deferredBalance | number : '1.2-2' }}</p>
+        </td>
+        <td class="py-3 px-4 text-right lg:table-cell">
+          <p class="text-dark text-sm leading-5">{{ account.symbol }} {{ account.retainedBalance | number : '1.2-2' }}</p>
+        </td>
+        <td class="pl-4 lg:flex justify-end">
+          <std-options>
+            <div class="flex items-center">
+              <div slot="optionsBtn"><std-options-btn label="Ver movimientos" icon="refinement" (click)="goToAccountDetail()"></std-options-btn></div>
+            </div>
+          </std-options>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
