@@ -6,8 +6,7 @@
     "types": []
   },
   "files": [
-    "src/app/consolidated-position/main.ts",
-    "src/app/accounts/main.ts"
+    "src/main.ts"
   ],
   "include": [
     "src/**/*.d.ts"
