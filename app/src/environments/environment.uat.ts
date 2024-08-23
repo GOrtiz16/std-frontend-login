@@ -1,5 +1,5 @@
 export const environment: any = {
-  production: false,
+  production: true,
   environment: 'local',
   apiStdLogin: {
     mock: false,
