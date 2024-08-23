@@ -38,7 +38,7 @@ jobs:
         working-directory: ./app
 
       - name: Build
-        run: npm run build:uat
+        run: npm run build:all
         working-directory: ./app
 
       # - name: Test
