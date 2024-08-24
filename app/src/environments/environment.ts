@@ -18,6 +18,7 @@ export const environment: any = {
     mock: false,
     ip: 'http://10.2.0.10:80/',
     positionacc: 'mf/positionacc',
+    transfers: 'mf/transfers',
     api_home_shell: 'api/mf/v1/home/session'
   },
   OcpApimSubscriptionKey: '14bf1deb-60c4-46c1-a2f1-adb501fe759e'

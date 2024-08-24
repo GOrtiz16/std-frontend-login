@@ -65,7 +65,7 @@ export class StdHomeSidebarComponent implements OnInit {
   }
 
   navigateTo(destiny: number): void {
-    const path = { 1: '/consolidated-position', 2: '/accounts' }[destiny];
+    const path = { 1: '/consolidated-position', 2: '/accounts', 3: '/transfers' }[destiny];
     this.router.navigateByUrl(path || '/');
   }
 }

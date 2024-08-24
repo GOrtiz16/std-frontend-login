@@ -11,6 +11,10 @@ export const ROUTES: Routes = [
         loadChildren: () => import('./pages/consolidated-position/consolidated-position.module').then((m) => m.ConsolidatedPositionModule),
       },
       {
+        path: 'transfers',
+        loadChildren: () => import('./pages/transfers/transfers.module').then((m) => m.TransfersModule),
+      },
+      {
         path: 'accounts-detail',
         loadChildren: () => import('./pages/accounts-detail/accounts-detail.module').then((m) => m.AccountsDetailModule),
       },

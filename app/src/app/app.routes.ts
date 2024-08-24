@@ -23,6 +23,11 @@ export const routes: Routes = [
     path: 'accounts',
     loadChildren: () => import('./workflow/home/pages/accounts/accounts.module').then((m) => m.AccountsModule),
     canActivate: [authGuard]
+  },
+  {
+    path: 'transfers',
+    loadChildren: () => import('./workflow/home/pages/transfers/transfers.module').then((m) => m.TransfersModule),
+    canActivate: [authGuard]
   }
 ];
 
