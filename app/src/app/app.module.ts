@@ -1,43 +1,62 @@
-import { HttpClientModule } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, InjectionToken, Injector, NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { routes } from './app.routes';
-import { CommonModule } from '@angular/common';
-import { STDTimerManagerModule } from './shared/core/timer-manager/timer-manager.module';
-import { defineCustomElements } from 'stencil-library/loader';
-import { STDAuthenticationModule } from './shared/core/authentiication-manager';
-import { STDStorageModule } from './shared/core/storage-manager';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './core/interceptors/auth.interceptor'; // Ajusta el path según tu estructura de carpetas
+import { createCustomElement } from '@angular/elements';
+import { CoreModule } from './custom-modules/core.module';
+// import { ConsolidatedPositionComponent } from './consolidated-position/consolidated-position.component';
+import { StdAuthLoadingModule } from './components/std-auth-loading/std-auth-loading.module';
+// import { AccountsDetailComponent } from './account-detail/accounts-detail.component';
+// import { AccountsComponent } from './accounts/accounts.component';
+import { MobileAccountsDetailComponent } from './mobile-accounts-detail/mobile-accounts-detail.component';
+import { DetailMobileMovementsComponent } from './detail-mobile-movements/detail-mobile-movements.component';
+import { DetailsAccountsDataComponent } from './details-accounts-data/details-accounts-data.component';
+// import { ConcatSymbolPipe } from './helpers/concatSymbol.pipe';
+import { StdBoxModule } from './shared/components/std-box/std-box.module';
+import { StdCardPriceModule } from './shared/components/std-card-price/std-card-price.module';
+
+// function appInitialization(envConfigLibService:ConfigService) :()=>Observable<any>{
+//   return ()=>envConfigLibService.setConfigurationDetails()
+// }
+
+export const appName = new InjectionToken('appName');
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
+    // ConsolidatedPositionComponent,
+    // AccountsDetailComponent,
+    // AccountsComponent,
+    MobileAccountsDetailComponent,
+    DetailMobileMovementsComponent,
+    DetailsAccountsDataComponent,
+    // ConcatSymbolPipe
   ],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    HttpClientModule,
-    FormsModule, 
-    ReactiveFormsModule,
-    RouterModule.forRoot(routes),
-    STDTimerManagerModule.forRoot({timeSeconds: 20, order: 'des'}),
-    STDAuthenticationModule.forRoot(),
-    STDStorageModule.forRoot(),
-  ],
+  imports: [CoreModule, AppRoutingModule, StdAuthLoadingModule, StdBoxModule, StdCardPriceModule],
   providers: [
+    // {
+    //   provide:APP_INITIALIZER,
+    //   useFactory: appInitialization,
+    //   deps:[ConfigService],
+    //   multi:true
+    // },
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
+      provide: appName,
+      useValue: 'std-mfe-consolidated-position'
     }
-  ],
-  bootstrap: [AppComponent]
+  ]
+  //bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private injector: Injector) {
+    import('stencil-library/loader').then(({ defineCustomElements }) => {
+      defineCustomElements(window);
+    });
+  }
 
-defineCustomElements();
+  ngDoBootstrap() {
+    const todoApp = createCustomElement(AppComponent, { injector: this.injector });
+    customElements.define('std-mfe-consolidated-position', todoApp);
+  }
+}

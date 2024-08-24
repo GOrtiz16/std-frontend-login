@@ -1,1 +1,19 @@
+<!-- <div class="content"> -->
+    <!-- <h4>First MicroFrontEnd Loaded({{environment}})</h4> -->
+    <!-- <button class="btn btn-primary" [routerLink]="['list']">Load Todos</button> -->
+    <!-- <router-outlet></router-outlet> -->
+<!-- </div> -->
+<!-- <div> -->
+
+  <!-- <div class="flex flex-col gap-12 py-16 px-8"> -->
+    <!-- <std-input icon="santander"></std-input> -->
+  <!-- </div> -->
+  <!-- <div slot="footer" class="w-full flex justify-center"> -->
+    <!-- <std-button label="Entendido"></std-button> -->
+  <!-- </div> -->
+<!-- </div> -->
+
 <router-outlet></router-outlet>
+@if (loading) {
+  <std-auth-loading></std-auth-loading>
+}

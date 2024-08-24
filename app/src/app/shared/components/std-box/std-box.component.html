@@ -1,0 +1,15 @@
+<div [ngClass]="boxClasses">
+  <div class="flex items-center justify-between flex-wrap gap-2">
+    <h3 class="relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-6 after:h-[2px] after:bg-primary text-dark text-lg font-bold flex items-center gap-2">
+      {{ label }}
+    </h3>
+    <ng-container *ngIf="link">
+      <std-link [label]="labelLink" [icon]="iconLink" iconPosition="left" [class]="classesLink" (clickEvent)="onClickLink()"></std-link>
+    </ng-container>
+
+    <ng-content select="[slot='actions']"></ng-content>
+  </div>
+  <div>
+    <ng-content></ng-content>
+  </div>
+</div>
