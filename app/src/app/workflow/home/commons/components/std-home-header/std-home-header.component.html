@@ -33,27 +33,10 @@
       <p class="flex gap-2 font-bold text-dark text-xs"><span>29 abril 2024</span>-<span> 12:04 hrs</span></p>
     </div>
     <div class="max-w-[306px] w-full hidden lg:block">
-      <std-dropdown [data]="dataHeader">
-        <std-radio-button label="Talent Ready Perú SAC" name="company" white></std-radio-button>
-        <std-radio-button label="Bazar SAC" name="company" white></std-radio-button>
-        <std-radio-button label="Cepedes International SAC" name="company" white></std-radio-button>
-        <std-radio-button label="Cobre Sol SAC" name="company" white></std-radio-button>
-        <std-radio-button label="Diamont SAC" name="company" white></std-radio-button>
-        <std-radio-button label="Elephant Huge SAC" name="company" white></std-radio-button>
-        <std-radio-button label="Talent Ready Perú SAC" name="company" white></std-radio-button>
+      <std-dropdown [data]="dataDropDown">
+        <std-radio-button *ngFor="let company of homeSession.customers" [label]="company.fullName" name="company" white></std-radio-button>
       </std-dropdown>
     </div>
   </div>
 </header>
-
-<!-- TODO: validar y eliminar línas comentadas -->
-<!-- <std-header-home [data]="dataHeader">
-  <std-radio-button label="Talent Ready Perú SAC" name="company" white></std-radio-button>
-  <std-radio-button label="Bazar SAC" name="company" white></std-radio-button>
-  <std-radio-button label="Cepedes International SAC" name="company" white></std-radio-button>
-  <std-radio-button label="Cobre Sol SAC" name="company" white></std-radio-button>
-  <std-radio-button label="Diamont SAC" name="company" white></std-radio-button>
-  <std-radio-button label="Elephant Huge SAC" name="company" white></std-radio-button>
-  <std-radio-button label="Talent Ready Perú SAC" name="company" white></std-radio-button>
-</std-header-home> -->
 }

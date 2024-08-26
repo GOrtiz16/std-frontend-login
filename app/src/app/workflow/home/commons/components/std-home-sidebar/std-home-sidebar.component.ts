@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { IPerson, IProfile } from '../../services/home-shell.interfaces';
+import { IHomeSessionResponse } from '../../services/home-shell.interfaces';
 import { Router } from '@angular/router';
 import { HomeShellService } from '../../services/home-shell.service';
 
@@ -11,19 +11,14 @@ import { HomeShellService } from '../../services/home-shell.service';
 export class StdHomeSidebarComponent implements OnInit {
   isActive!: boolean;
 
-  @Input() person: IPerson = { givenName: '', fullName: '' };
-  @Input() profiles: IProfile = { roles: '', key: 0, name: '' };
-  @Input() loading: Boolean = false;
+  @Input() homeSession!: IHomeSessionResponse;
+  @Input() loading!: boolean;
 
   @ViewChild('collapseMenu') collapseMenu!: ElementRef;
 
   widthRender = 1023;
-  constructor(
-    public router: Router,
-    private homeShellService: HomeShellService,
-    private el: ElementRef,
-    private renderer: Renderer2,
-  ) { }
+
+  constructor(public router: Router, private homeShellService: HomeShellService, private renderer: Renderer2) {}
 
   ngOnInit() {
     this.homeShellService.getToggleSidebar().subscribe(() => {
@@ -34,11 +29,7 @@ export class StdHomeSidebarComponent implements OnInit {
   toggleClass(selector: string, className: string, add: boolean): void {
     const elements = this.collapseMenu.nativeElement.querySelectorAll(`.${selector}`);
     elements.forEach((element: HTMLElement) => {
-      if (add) {
-        this.renderer.addClass(element, className);
-      } else {
-        this.renderer.removeClass(element, className);
-      }
+      add ? this.renderer.addClass(element, className) : this.renderer.removeClass(element, className);
     });
   }
 
@@ -58,6 +49,7 @@ export class StdHomeSidebarComponent implements OnInit {
       menuOptions.forEach((node: any) => node.toogleLabel(true));
     }
   }
+
   toggleSidebar(status?: boolean) {
     this.isActive = !this.isActive;
     const menuOptions: NodeList = this.collapseMenu.nativeElement.querySelectorAll('std-collapse-list');

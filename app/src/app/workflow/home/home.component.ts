@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { delay, map, of, switchMap, tap } from 'rxjs';
 import { HomeShellService } from './commons/services/home-shell.service';
 import {
-  IHomeShellResponseOK,
+  IHomeSessionResponse,
   IHomeShellResponseError,
   IPerson,
   IProfile,
@@ -44,9 +44,9 @@ export class HomeComponent implements OnInit {
       tap(() => this.showLoader()),
       switchMap(() => {
         let request = { userCredentialId: 'VNANDI' };
-        return this.homeShellService.getShellinfo(request).pipe(
+        return this.homeShellService.getHomeSession(request).pipe(
           map(
-            (response: IHomeShellResponseOK) => {
+            (response: IHomeSessionResponse) => {
               this.setData(response);
               const logintime = 120;
               this.TimerService.setTime(logintime);
@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
     this.loading = false;
   }
 
-  setData(response: IHomeShellResponseOK) {
+  setData(response: IHomeSessionResponse) {
     this.personData = response.person;
     this.currencyPriceReferenceData = response.currencyExchange;
     this.companiesData = response.customers;

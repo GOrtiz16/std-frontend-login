@@ -125,16 +125,16 @@ export class LoginComponent {
       recaptcha: this.loginPresenter.recaptcha.value as string
     };
 
-    this.loginService.loginUser(request).subscribe(
-      (response: IAuthenticationResponse) => {
+    this.loginService.loginUser(request).subscribe({
+      next: (response: IAuthenticationResponse) => {
         this.loginOkResponse(response);
         this.isLoginIn = false;
       },
-      (error: IAuthenticationResponseError) => {
+      error: (error: IAuthenticationResponseError) => {
         this.isLoginIn = false;
         this.loginErroResponse(error);
       }
-    );
+    });
   }
 
   loginOkResponse(response: IAuthenticationResponse) {

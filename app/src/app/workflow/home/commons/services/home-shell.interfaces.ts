@@ -22,7 +22,7 @@ export interface IProfile {
   name: string;
 }
 
-export interface IHomeShellResponseOK {
+export interface IHomeSessionResponse {
   person: IPerson;
   currencyExchange: ICurrencyExchange;
   customers: Array<ICompany>;

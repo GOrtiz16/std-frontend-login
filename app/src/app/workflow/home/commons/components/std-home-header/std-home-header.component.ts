@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { ICompany, ICurrencyExchange } from '../../services/home-shell.interfaces';
+import { IHomeSessionResponse } from '../../services/home-shell.interfaces';
 import { HomeShellService } from '../../services/home-shell.service';
 
 @Component({
@@ -8,23 +8,24 @@ import { HomeShellService } from '../../services/home-shell.service';
   styleUrl: './std-home-header.component.scss'
 })
 export class StdHomeHeaderComponent implements OnInit, OnChanges {
-  @Input() currencyPriceReference: ICurrencyExchange = { exchangeRateSale: 0, exchangeRateBuy: 0 };
-  @Input() companies: Array<ICompany> = [];
+  @Input() homeSession!: IHomeSessionResponse;
   @Input() loading!: Boolean;
 
   dataHeader: any;
+  dataDropDown: any;
 
-  constructor(
-    private homeShellService: HomeShellService
-  ) {
+  constructor(private homeShellService: HomeShellService) {}
 
-  }
-  ngOnInit() { }
+  ngOnInit() {}
 
   ngOnChanges(): void {
     this.dataHeader = {
-      buyPrice: this.currencyPriceReference.exchangeRateBuy,
-      salesPrice: this.currencyPriceReference.exchangeRateSale
+      buyPrice: this.homeSession.currencyExchange.exchangeRateBuy,
+      salesPrice: this.homeSession.currencyExchange.exchangeRateSale
+    };
+    this.dataDropDown = {
+      company: this.homeSession.customers[0].customerId,
+      fullName: this.homeSession.customers[0].fullName
     };
   }
 

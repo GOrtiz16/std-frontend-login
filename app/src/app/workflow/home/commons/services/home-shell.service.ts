@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { IHttpErrorResponse } from 'src/app/workflow/auth/pages/login/services/login.service';
-import { IHomeShellResponseOK } from './home-shell.interfaces';
+import { IHomeSessionResponse } from './home-shell.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +21,11 @@ export class HomeShellService {
     return this.toggleSidebar;
   }
 
-  getShellinfo(userCredentialId: string): Observable<IHomeShellResponseOK> {
+  getHomeSession(userCredentialId: string): Observable<IHomeSessionResponse> {
     return environment.apiStdHome.mock
       ? this.mockFront('')
-      : this.http.post<IHomeShellResponseOK>(
-          `${environment.apiStdHome.ip}${environment.apiStdHome.api_home_shell}/${userCredentialId}`,
+      : this.http.post<IHomeSessionResponse>(
+          `${environment.apiStdHome.ip}${environment.apiStdHome.api_home_session}/${userCredentialId}`,
           { headers: this.getToken('14bf1deb-60c4-46c1-a2f1-adb501fe759e') }
         );
   }
@@ -39,8 +39,8 @@ export class HomeShellService {
     return headers;
   }
 
-  mockFront(password: string): Observable<IHomeShellResponseOK> {
-    let response = {} as IHomeShellResponseOK;
+  mockFront(password: string): Observable<IHomeSessionResponse> {
+    let response = {} as IHomeSessionResponse;
 
     const customError461 = new IHttpErrorResponse(403, 404, '', null, 'ERR461', 'session-expired');
     const customError462 = new IHttpErrorResponse(403, 404, '', null, 'ERR462', 'maintenance');

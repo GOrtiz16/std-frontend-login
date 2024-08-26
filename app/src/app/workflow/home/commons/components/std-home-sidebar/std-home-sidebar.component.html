@@ -89,8 +89,8 @@
           <div class="bg-alternative-strong rounded-lg text-center py-2 px-4">
             <p class="font-normal text-dark text-xs">T.C. Office Banking</p>
             <p class="flex justify-center gap-2 font-bold text-dark text-xs">
-              <span>Compra S/ 3.730</span>
-              <span>Venta S/ 3.730</span>
+              <span>Compra S/ {{ homeSession.currencyExchange.exchangeRateBuy || '0.000' }}</span>
+              <span>Venta S/ {{ homeSession.currencyExchange.exchangeRateSale || '0.000' }}</span>
             </p>
           </div>
         </div>
