@@ -26,8 +26,12 @@ export class StdLayuotComponent implements OnInit {
   getHomeSession() {
     this.showLoader();
 
-    const request = 'VSANTINO';
-    this.homeShellService.getHomeSession(request).subscribe({
+    const userCredentialId = sessionStorage.getItem('user_credential_id');
+    if (!userCredentialId) {
+      return;
+    }
+
+    this.homeShellService.getHomeSession(userCredentialId).subscribe({
       next: (response: IHomeSessionResponse) => {
         this.homeSessionData = response;
         const logintime = 120;

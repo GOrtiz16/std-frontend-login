@@ -158,6 +158,7 @@ export class LoginComponent {
 
     if (!isFirstLogin && success && retry == 0) {
       sessionStorage.setItem('ars_loginshell_token', JSON.stringify(response.sessionToken) || 'token test');
+      sessionStorage.setItem('user_credential_id', this.loginPresenter.username.value || '');
       this.router.navigateByUrl('/consolidated-position');
     }
 

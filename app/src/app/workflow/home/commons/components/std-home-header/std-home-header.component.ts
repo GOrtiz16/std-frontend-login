@@ -20,12 +20,12 @@ export class StdHomeHeaderComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     this.dataHeader = {
-      buyPrice: this.homeSession.currencyExchange.exchangeRateBuy,
-      salesPrice: this.homeSession.currencyExchange.exchangeRateSale
+      buyPrice: this.homeSession?.currencyExchange.exchangeRateBuy || '0.000',
+      salesPrice: this.homeSession?.currencyExchange.exchangeRateSale || '0.000'
     };
     this.dataDropDown = {
-      company: this.homeSession.customers[0].customerId,
-      fullName: this.homeSession.customers[0].fullName
+      company: this.homeSession?.customers[0].customerId,
+      fullName: this.homeSession?.customers[0].fullName
     };
   }
 
