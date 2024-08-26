@@ -1,0 +1,49 @@
+name: 'Set environment variables'
+description: 'Set environment variables for the workflow'
+inputs:
+  ambiente:
+    description: 'Environment'
+    required: true
+  repositorio:
+    description: 'Repositorio'
+    required: true
+outputs:
+  namespace:
+    description: "Namespace"
+  cluster_name:
+    description: "Cluster name"
+  cluster_resource_group:
+    description: "Cluster resource group"
+  repositorio:
+    description: "Repositorio"
+  version:
+    description: "version package.json"
+
+
+runs:
+  using: "composite"
+  steps:
+    - id: set-vars
+      run: |
+        echo "namespace=microfront-${{ inputs.ambiente }}" >> $GITHUB_ENV
+        echo "cluster_name=AZ-EASTUS-BSP-${{ inputs.ambiente }}-NEWOBW-AKS" >> $GITHUB_ENV
+        echo "cluster_resource_group=AZ-EASTUS-BSP-${{ inputs.ambiente }}-NEWOBW-ALL-RG" >> $GITHUB_ENV
+        echo "repositorio=$(echo ${{ inputs.repositorio }} | cut -d'/' -f2 | cut -d'-' -f3)" >> $GITHUB_ENV
+        echo "tag=$(jq -r '.version' package.json)" >> $GITHUB_ENV
+        echo "container_port=$(grep CONTAINER_PORT envs/properties.env | cut -d '=' -f2)" >> $GITHUB_ENV
+        echo "container_path=$(grep CONTAINER_PATH envs/properties.env | cut -d '=' -f2)" >> $GITHUB_ENV
+
+      
+      shell: bash
+
+    - id: output-vars
+      run: |
+        echo "namespace=${{ env.namespace }}" >> $GITHUB_OUTPUT
+        echo "cluster_name=${{ env.cluster_name }}" >> $GITHUB_OUTPUT
+        echo "cluster_resource_group=${{ env.cluster_resource_group }}" >> $GITHUB_OUTPUT
+        echo "repositorio=${{ env.repositorio }}" >> $GITHUB_OUTPUT
+        echo "tag=${{ env.tag }}" >> $GITHUB_OUTPUT
+        echo "container_port=${{ env.container_port }}" >> $GITHUB_OUTPUT
+        echo "container_path=${{ env.container_path }}" >> $GITHUB_OUTPUT
+
+      shell: bash

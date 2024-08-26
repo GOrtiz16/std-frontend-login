@@ -1,0 +1,14 @@
+<div class="flex flex-col lg:flex-row lg:flex-wrap min-h-screen lg:h-screen" [class.lg:border-t-8]="loading" [class.lg:border-t-border-default]="loading">
+  <std-home-sidebar [person]="personData" [profiles]="profilesData" [loading]="loading"></std-home-sidebar>
+
+  <div class="grow flex flex-col lg:w-[calc(100%-22.125rem)] lg:h-full lg:overflow-y-auto lg:py-0">
+    <main class="grow">
+      <std-home-header [currencyPriceReference]="currencyPriceReferenceData" [companies]="companiesData" [loading]="loading"></std-home-header>
+
+      <router-outlet></router-outlet>
+    </main>
+    <std-home-footer [loading]="loading"></std-home-footer>
+  </div>
+</div>
+
+<std-home-security></std-home-security>
