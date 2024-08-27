@@ -1,13 +1,15 @@
-import { enableProdMode } from '@angular/core';
+// import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+// import { AppModule } from './app/app.module';
+// import { loadAsset } from './app/helpers/asset-loader.helper';
+
+// loadAsset(`styles.css`);
+
+// platformBrowserDynamic().bootstrapModule(AppModule,{ngZone:(window as any).ngZone})
+//   .catch(err => console.error(err));
+
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
-
-if (environment.production) {
-  enableProdMode();
-}
+import { ConsolidatedPositionModule } from './app/consolidated-position/consolidated-position.module';
 
 platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch((err) => console.error(err));
+  .bootstrapModule(ConsolidatedPositionModule)
+  .catch(err => console.error(err));

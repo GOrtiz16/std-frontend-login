@@ -8,7 +8,7 @@ RUN rm -rf /usr/share/nginx/html
 
 RUN mkdir /usr/share/nginx/html/
 
-COPY dist/*/* /usr/share/nginx/html/
+COPY dist/*/* /usr/share/nginx/html/mf/positionacc/
 COPY nginx/nginx.config /etc/nginx/conf.d/default.conf
 
 RUN chown 999 -R /tmp
