@@ -11,20 +11,12 @@ export class ConsolidatedPositionComponent implements OnInit {
   loading = false;
 
   ngOnInit() {
-    // this.verifyLoading();
-    const url = env.production
-      ? `${env.apiStdHome.ip}${env.apiStdHome.positionacc}`
-      : 'http://127.0.0.1:8080/consolidated-position';
     const token = Math.random().toString(36).substring(2, 9);
+    const base = env.production ? env.apiStdHome.ip : 'http://127.0.0.1:8080';
+    const url = `${base}/${env.apiStdHome.consolidated_position}`;
     // loadAsset(`${url}/styles.css`);
     loadScript(`${url}/main.js?v=${token}`, 'mf-consolidated-position');
   }
-
-  // verifyLoading() {
-  //   setTimeout(() => {
-  //     this.loading = false;
-  //   }, 1500);
-  // }
 
   postMessage(messageFromChild: Event) {
     console.log(messageFromChild);

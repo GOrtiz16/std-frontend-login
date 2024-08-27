@@ -34,6 +34,7 @@ export class StdLayuotComponent implements OnInit {
     this.homeShellService.getHomeSession(userCredentialId).subscribe({
       next: (response: IHomeSessionResponse) => {
         this.homeSessionData = response;
+        sessionStorage.setItem('customer_id', response.customers[0].customerId);
         const logintime = 120;
         this.TimerService.setTime(logintime);
       },

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { loadAsset, loadScript } from 'src/app/shared/helpers/asset-loader.helper';
 import { environment as env } from 'src/environments/environment';
 
@@ -7,29 +7,18 @@ import { environment as env } from 'src/environments/environment';
   templateUrl: './transfers.component.html',
   styleUrl: './transfers.component.scss'
 })
-export class TransfersComponent {
-  loading = true;
+export class TransfersComponent implements OnInit {
+  loading = false;
 
   ngOnInit() {
-    this.verifyLoading();
-    const url = env.production ? `${env.apiStdHome.ip}${env.apiStdHome.transfers}` : 'http://127.0.0.1:8080';
     const token = Math.random().toString(36).substring(2, 9);
+    const base = env.production ? env.apiStdHome.ip : 'http://127.0.0.1:8080';
+    const url = `${base}/${env.apiStdHome.transfers}`;
     // loadAsset(`${url}/styles.css`);
-    loadScript(`${url}/arstransfers-1.js?v=${token}`,'');
-    // const url = env.production ? `${env.apiStdHome.ip}${env.apiStdHome.transfers}` : 'http://127.0.0.1:8080/transfers';
-    // const token = Math.random().toString(36).substring(2, 9);
-    // // loadAsset(`${url}/styles.css`);
-    // loadScript(`${url}/main.js?v=${token}`, 'std-mfe-transfers');
-  }
-
-  verifyLoading() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 1500);
+    loadScript(`${url}/main.js?v=${token}`, 'mf-transfers');
   }
 
   postMessage(messageFromChild: Event) {
     console.log(messageFromChild);
   }
-
 }

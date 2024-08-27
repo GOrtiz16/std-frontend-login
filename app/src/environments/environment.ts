@@ -17,7 +17,8 @@ export const environment: any = {
   apiStdHome: {
     mock: true,
     ip: 'http://10.0.50.10/',
-    positionacc: 'mf/positionacc',
+    consolidated_position: 'mf/consolidated-position',
+    accounts: 'mf/accounts',
     transfers: 'mf/transfers',
     api_home_session: 'api/mf/v1/home/session'
   },
