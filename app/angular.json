@@ -17,7 +17,7 @@
         "build": {
           "builder": "ngx-build-plus:browser",
           "options": {
-            "outputPath": "dist/consolidated-position",
+            "outputPath": "dist/mf/consolidated-position",
             "index": "src/index.html",
             "main": "src/app/consolidated-position/main.ts",
             "tsConfig": "tsconfig.app.json",
@@ -90,7 +90,7 @@
         "build": {
           "builder": "ngx-build-plus:browser",
           "options": {
-            "outputPath": "dist/accounts",
+            "outputPath": "dist/mf/accounts",
             "index": "src/index.html",
             "main": "src/app/accounts/main.ts",
             "tsConfig": "tsconfig.app.json",
