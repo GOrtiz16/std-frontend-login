@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { delay, of, tap } from 'rxjs';
-import { LoadingService } from '../components/std-auth-loading/commons/loading.service';
+import { LoadingService } from '../../components/std-auth-loading/commons/loading.service';
 import { Router } from '@angular/router';
 
 @Component({

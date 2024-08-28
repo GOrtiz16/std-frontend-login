@@ -10,8 +10,8 @@
           "style": "scss"
         }
       },
-      "root": "src/app/consolidated-position",
-      "sourceRoot": "src/app/consolidated-position",
+      "root": "src/app/modules/consolidated-position",
+      "sourceRoot": "src/app/modules/consolidated-position",
       "prefix": "app",
       "architect": {
         "build": {
@@ -19,7 +19,7 @@
           "options": {
             "outputPath": "dist/mf/consolidated-position",
             "index": "src/index.html",
-            "main": "src/app/consolidated-position/main.ts",
+            "main": "src/app/modules/consolidated-position/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "singleBundle": true,
@@ -83,8 +83,8 @@
           "style": "scss"
         }
       },
-      "root": "src/app/accounts",
-      "sourceRoot": "src/app/accounts",
+      "root": "src/app/modules/accounts",
+      "sourceRoot": "src/app/modules/accounts",
       "prefix": "app",
       "architect": {
         "build": {
@@ -92,7 +92,7 @@
           "options": {
             "outputPath": "dist/mf/accounts",
             "index": "src/index.html",
-            "main": "src/app/accounts/main.ts",
+            "main": "src/app/modules/accounts/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "singleBundle": true,

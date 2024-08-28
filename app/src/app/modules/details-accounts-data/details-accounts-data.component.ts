@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingService } from '../components/std-auth-loading/commons/loading.service';
+import { LoadingService } from '../../app/components/std-auth-loading/commons/loading.service';
 import { Router } from '@angular/router';
 import { AccountsService } from '../accounts/services/accounts.service';
 import { IAccount, IAccountsResponse } from '../accounts/interfaces/accounts.interface';

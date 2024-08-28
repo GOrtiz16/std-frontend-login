@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingService } from '../components/std-auth-loading/commons/loading.service';
+import { LoadingService } from '../../components/std-auth-loading/commons/loading.service';
 import { Router } from '@angular/router';
 import { ConsolidatedService } from './services/consolidated-position.service';
 import { IConsolidatedResponse, ISummary } from './interfaces/consolidated-position.interface';
 declare var window: any;
+
 interface slideInterface {
   text?: string;
   imageUrl?: string;
@@ -14,6 +15,7 @@ interface slideInterface {
   templateUrl: './consolidated-position.html',
   styleUrls: ['./consolidated-position.scss']
 })
+
 export class ConsolidatedPositionComponent implements OnInit {
   slides: slideInterface[] = [];
   data: IConsolidatedResponse;

@@ -11,9 +11,10 @@ export class ConsolidatedService {
   constructor(private http: HttpClient) {}
 
   postConsolidated(): Observable<IConsolidatedResponse> {
+    const customer = JSON.parse(sessionStorage.getItem('customer') || '');
     const body = {
       userCredentialId: sessionStorage.getItem('user_credential_id'),
-      customer: sessionStorage.getItem('customer_id')
+      customer: `01${customer.customerIdType || ''}${customer.customerId || ''}`
     };
     const headers = new HttpHeaders({
       'x-santander-client-id': '1234'
