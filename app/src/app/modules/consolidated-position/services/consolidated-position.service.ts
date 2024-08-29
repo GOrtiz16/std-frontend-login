@@ -14,11 +14,7 @@ export class ConsolidatedService {
     const customer = JSON.parse(sessionStorage.getItem('customer') || '');
     const body = {
       userCredentialId: sessionStorage.getItem('user_credential_id'),
-<<<<<<< HEAD:src/app/consolidated-position/services/consolidated-position.service.ts
-      customer: sessionStorage.getItem('customer_id')
-=======
       customer: `01${customer.customerIdType || ''}${customer.customerId || ''}`
->>>>>>> 0f75863c223938ddc2850ffae9366eebf927d744:src/app/modules/consolidated-position/services/consolidated-position.service.ts
     };
     const headers = new HttpHeaders({
       'x-santander-client-id': '1234'
