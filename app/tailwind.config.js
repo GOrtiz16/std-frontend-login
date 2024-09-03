@@ -106,5 +106,5 @@ module.exports = {
     }
   },
   safelist: ["after:content-['S/']'", "peer-checked:after:content-['$']"],
-  plugins: []
+  plugins: [require('@tailwindcss/forms')]
 };

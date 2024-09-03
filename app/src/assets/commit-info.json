@@ -1,0 +1,13 @@
+{
+  "built": "2024-08-29 18:40:56",
+  "appName": "std-frontend-login",
+  "appVersion": "0.0.4",
+  "angular": "v17.3.0",
+  "commit": {
+    "branch": "feature/develop",
+    "hash": "f062d9dc649cd9220d4d635419abae68dc591c4a",
+    "comment": "chore(version): set to 0.0.4",
+    "auth": "Richard Pantoja (rpantoja_ntt@santander.com.pe)",
+    "date": "2024-08-29 12:04:37"
+  }
+}

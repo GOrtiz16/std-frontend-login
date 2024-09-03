@@ -30,6 +30,27 @@ on:
         description: 'Path del contenedor'
         required: true
         type: string
+      ambiente:
+        description: 'Ambiente'
+        required: true
+        type: string
+      azure_credentials:
+        description: 'Credenciales de Azure'
+        required: true
+        type: string
+      registry_login_server:
+        description: 'Servidor de Registro'
+        required: true
+        type: string
+      registry_username:
+        description: 'Usuario de Registro'
+        required: true
+        type: string
+      registry_password:
+        description: 'Contraseña de Registro'
+        required: true
+        type: string
+      
 
 
 jobs:
@@ -50,7 +71,7 @@ jobs:
       - name: 'Login via Azure CLI'
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: ${{ secrets[inputs.azure_credentials] }}
   
       - name: Set up kubelogin for non-interactive login
         uses: azure/use-kubelogin@v1
@@ -70,10 +91,10 @@ jobs:
       #Create imagepullsecret for Azure Container registry (ACR)
       - uses: azure/k8s-create-secret@v1
         with:
-          container-registry-url: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
-          container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-          secret-name: ${{ secrets.REGISTRY_LOGIN_SERVER }}-registry-connection
+          container-registry-url: ${{ vars[inputs.registry_login_server] }}
+          container-registry-username: ${{ secrets[inputs.registry_username] }}
+          container-registry-password: ${{ secrets[inputs.registry_password] }}
+          secret-name: ${{ vars[inputs.registry_login_server] }}-registry-connection
           namespace: ${{ inputs.namespace }}
 
 
@@ -88,7 +109,7 @@ jobs:
       - uses: azure/k8s-bake@v3
         with:
           renderEngine: 'helm'
-          helmChart: './.github/helm/'
+          helmChart: ./.github/helm-${{ inputs.ambiente }}
           helm-version: '3.13.3' #v3.15.1
           # overrideFiles: './.github/helm/values.yaml'
           overrides: |
@@ -96,21 +117,21 @@ jobs:
             deployment.name: ${{ inputs.repositorio }}
             deployment.replicaCount: 1
             deployment.containerPort: ${{ inputs.container_port }}
-            image.repository: ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ inputs.repositorio }}
+            image.repository: ${{ vars[inputs.registry_login_server] }}/${{ inputs.repositorio }}
             image.tag: ${{ inputs.tag }}
             service.name: ${{ inputs.repositorio }}
             service.port: ${{ inputs.container_port }}
             service.type: ClusterIP
-            ingress.name: ${{ inputs.repositorio }}-ingress
-            ingress.path: ${{ inputs.container_path }}
-            ingress.port: ${{ inputs.container_port }}
+            istio.path: ${{ inputs.container_path }}
+
         id: bake
 
 
       # Deploy app to AKS
       - uses: azure/k8s-deploy@v5
+        timeout-minutes: 3
         with:
           manifests: ${{ steps.bake.outputs.manifestsBundle }}
           imagepullsecrets: |
-            ${{ secrets.REGISTRY_LOGIN_SERVER }}-registry-connection
+            ${{ vars[inputs.registry_login_server] }}-registry-connection
           namespace: ${{ inputs.namespace }}

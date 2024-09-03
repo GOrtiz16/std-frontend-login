@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  strategy:
+    type: RollingUpdate
+  replicas: {{ .Values.deployment.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+      - name: {{ .Values.name }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.deployment.containerPort }}
+        resources:
+          limits:
+            cpu: {{ .Values.deployment.resources_limits_cpu }}
+            memory: {{ .Values.deployment.resources_limits_memory }}
+          requests:
+            cpu: {{ .Values.deployment.resources_requests_cpu }}
+            memory: {{ .Values.deployment.resources_requests_memory }}
