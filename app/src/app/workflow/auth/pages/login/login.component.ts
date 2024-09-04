@@ -274,7 +274,7 @@ export class LoginComponent {
   }
 
   onInputPasswordKeyUp(event: KeyboardEvent) {
-    if (event.key === 'Enter' && event.code === 'Enter') {
+    if (event.key === 'Enter' && ['Enter', 'NumpadEnter'].includes(event.code)) {
       this.onSubmit();
     }
   }

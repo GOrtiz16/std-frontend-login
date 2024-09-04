@@ -31,7 +31,7 @@ export class LoginPresenter {
     sizeModal: 'm',
     title: this.title,
     subtitle: 'El usuario y/o contraseña ingresados no coinciden.',
-    body: '<strong>Te queda 2 intento más.</strong><br />Ingresa tus datos correctamente o se bloqueará tu acceso.',
+    body: '<strong>Te quedan 2 intentos más.</strong><br />Ingresa tus datos correctamente o se bloqueará tu acceso.',
     btnBackLabel: 'Volver a intentar'
   };
 
