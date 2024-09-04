@@ -75,15 +75,15 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        'checkbox-checked': 'url("/images/svg/checkbox-checked.svg")',
+        'checkbox-checked': 'url("assets/images/svg/checkbox-checked.svg")',
         'checkbox-checked-minus':
-          'url("/images/svg/checkbox-checked-minus.svg")',
-        'checkbox-readonly': 'url("/images/svg/checkbox-readonly.svg")',
-        'checkbox-disabled': 'url("/images/svg/checkbox-disabled.svg")',
-        'radio-checked': 'url("/images/svg/radio-checked.svg")',
+          'url("assets/images/svg/checkbox-checked-minus.svg")',
+        'checkbox-readonly': 'url("assets/images/svg/checkbox-readonly.svg")',
+        'checkbox-disabled': 'url("assets/images/svg/checkbox-disabled.svg")',
+        'radio-checked': 'url("assets/images/svg/radio-checked.svg")',
         'radio-checked-disabled':
-          'url("/images/svg/radio-checked-disabled.svg")',
-        'radio-error': 'url("/images/svg/radio-error.svg")'
+          'url("assets/images/svg/radio-checked-disabled.svg")',
+        'radio-error': 'url("assets/images/svg/radio-error.svg")'
       },
       boxShadow: {
         button: '0 1px 6px 0 rgba(163, 163, 163, 0.4)',

@@ -1,0 +1,23 @@
+:host {
+  width: 100%;
+}
+
+.css-collapse.is-open .css-collapse-body {
+  display: flex;
+}
+
+.css-collapse.is-open .collapse-list-title {
+  font-weight: 700;
+}
+
+.css-collapse.is-open .collapse-list-header {
+  border-color: red;
+}
+
+.css-collapse.is-open .hidden-collapse {
+  display: none;
+}
+
+.css-collapse.is-open .show-collapse {
+  display: flex;
+}

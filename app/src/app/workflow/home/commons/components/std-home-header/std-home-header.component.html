@@ -36,7 +36,7 @@
     </div>
     <div class="max-w-[306px] w-full hidden lg:block">
       <std-dropdown [data]="dataDropDown">
-        <std-radio-button *ngFor="let company of homeSession.customers" [label]="company.fullName" name="company" white></std-radio-button>
+        <std-radio-button *ngFor="let company of homeSession.customers" [label]="company.fullName" name="company" [white]="true"></std-radio-button>
       </std-dropdown>
     </div>
   </div>

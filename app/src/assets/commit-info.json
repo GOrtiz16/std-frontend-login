@@ -1,13 +1,13 @@
 {
-  "built": "2024-08-29 18:40:56",
+  "built": "2024-09-03 15:04:45",
   "appName": "std-frontend-login",
-  "appVersion": "0.0.4",
+  "appVersion": "0.0.6",
   "angular": "v17.3.0",
   "commit": {
     "branch": "feature/develop",
-    "hash": "f062d9dc649cd9220d4d635419abae68dc591c4a",
-    "comment": "chore(version): set to 0.0.4",
+    "hash": "b0c162541d87dee5e3cf92d48e4d1c313c41ef6a",
+    "comment": "feat(general): update stencil-library to 0.1.2",
     "auth": "Richard Pantoja (rpantoja_ntt@santander.com.pe)",
-    "date": "2024-08-29 12:04:37"
+    "date": "2024-09-02 15:12:01"
   }
 }

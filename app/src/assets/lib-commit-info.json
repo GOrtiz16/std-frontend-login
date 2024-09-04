@@ -1,13 +1,13 @@
 {
-  "built": "2024-08-30 11:43:02",
+  "built": "2024-09-02 14:29:18",
   "appName": "stencil-library",
-  "appVersion": "0.1.1",
+  "appVersion": "0.1.2",
   "stencil": "v4.7.0",
   "commit": {
     "branch": "feature/develop",
-    "hash": "5beb691ac7baed6a6fab69e0cc1be00c5fe41478",
-    "comment": "feat(package): update library to 0.1.0",
-    "auth": "Richard (pnt.richard@gmail.com)",
-    "date": "2024-08-26 18:17:18 -0500"
+    "hash": "58d9dccaac60cc7b2a92c547545f2153b244fb23",
+    "comment": "feat(std-input): new onKeyDown, onKeyUp events",
+    "auth": "Richard Pantoja (rpantoja_ntt@santander.com.pe)",
+    "date": "2024-08-30 11:46:40 -0500"
   }
 }

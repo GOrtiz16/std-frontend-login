@@ -11,11 +11,15 @@ import { NavigateSidebar } from '../../../interface/sidebar-navigate.interface';
 })
 export class StdHomeSidebarComponent implements OnInit {
   isActive!: boolean;
+  username!: string;
+  profile!: string;
+  widthRender = 1023;
 
   @Input() homeSession!: IHomeSessionResponse;
   @Input() loading!: boolean;
 
   @ViewChild('collapseMenu') collapseMenu!: ElementRef;
+
   navigate_render: NavigateSidebar[] = [
     {
       name: 'consolidated-position',
@@ -55,7 +59,6 @@ export class StdHomeSidebarComponent implements OnInit {
       actived: this.router.url.includes('operations')
     }
   ];
-  widthRender = 1023;
 
   constructor(public router: Router, private homeShellService: HomeShellService, private renderer: Renderer2) {}
 
@@ -63,7 +66,19 @@ export class StdHomeSidebarComponent implements OnInit {
     this.homeShellService.getToggleSidebar().subscribe(() => {
       this.toggleSidebar(true);
     });
-    const router = this.router.url;
+
+    this.setProfile();
+  }
+
+  setProfile(): void {
+    const home = JSON.parse(sessionStorage.getItem('home') || '');
+    const givenName = home?.person?.givenName || '';
+    const nameParts = givenName.split(' ');
+    this.username = nameParts[0].charAt(0) + nameParts[0].slice(1).toLowerCase();
+
+    const customer = JSON.parse(sessionStorage.getItem('customer') || '');
+    const isFirmante = customer?.profiles.some((c: any) => c.name.toLowerCase() == 'firmante');
+    this.profile = isFirmante ? 'Firmante' : 'Operador';
   }
 
   handleLogout(): void {
