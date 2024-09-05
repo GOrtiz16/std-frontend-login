@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { AccountsDetailComponent } from './accounts-detail.component';
 import { ROUTES } from './accounts-detail.routes';
+import { StdLayutMainModule } from '../../commons/components/std-layout-main/std-layout-main.module';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -12,8 +13,8 @@ import { ROUTES } from './accounts-detail.routes';
   ],
   imports: [
     CommonModule,
-
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
+    StdLayutMainModule
   ],
   exports: [
     AccountsDetailComponent

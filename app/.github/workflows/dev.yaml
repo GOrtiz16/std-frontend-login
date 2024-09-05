@@ -1,0 +1,14 @@
+name: CI Workflow
+on:
+  push:
+    branches:
+      - development
+  pull_request:
+    branches:
+      - development
+
+jobs:
+  call-reusable-workflow:
+    name: CI Workflow
+    uses: santander-group-peru-gln/per-newobw-arsfronttest/.github/workflows/dev.yaml@main
+    secrets: inherit

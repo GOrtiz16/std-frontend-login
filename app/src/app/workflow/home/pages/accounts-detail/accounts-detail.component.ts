@@ -11,10 +11,16 @@ export class AccountsDetailComponent implements OnInit {
   loading = true;
 
   ngOnInit() {
-    const url = env.production ? `${env.apiStdHome.ip}${env.apiStdHome.positionacc}` : 'http://127.0.0.1:8080';
+this.loadConsolidatedPosition()
+  }
+
+  loadConsolidatedPosition(): void {
     const token = Math.random().toString(36).substring(2, 9);
+    const base = env.production ? env.apiStdHome.ip : 'http://127.0.0.1:8081/';
+    const url = `${base}${env.apiStdHome.detail_accounts}`;
+    console.log("url",url)
     // loadAsset(`${url}/styles.css`);
-    loadScript(`${url}/arspositionacc-1.js?v=${token}`);
+    loadScript(`${url}/main.js?v=${token}`, 'mf-detail-accounts');
   }
 
   postMessage(messageFromChild: Event) {

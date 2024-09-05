@@ -1,6 +1,6 @@
 {
   "name": "std-frontend-login",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "scripts": {
     "start": "ng serve",
     "start:dev": "ng serve --configuration development",
@@ -13,7 +13,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:coverage": "ng test --code-coverage",
-    "libs": "npm uninstall stencil-library && npm i ./stencil-library/stencil-library-0.1.3.tgz -D",
+    "libs": "npm uninstall stencil-library && npm i ./stencil-library/stencil-library-0.1.6.tgz -D",
     "prebuild": "node commit-info.js",
     "prebuild-components": "node copy-commit-info.js"
   },
@@ -51,7 +51,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "postcss": "^8.4.38",
-    "stencil-library": "file:stencil-library/stencil-library-0.1.3.tgz",
+    "stencil-library": "file:stencil-library/stencil-library-0.1.6.tgz",
     "tailwindcss": "^3.4.3",
     "typescript": "~5.4.2"
   }

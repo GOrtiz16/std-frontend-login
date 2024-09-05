@@ -26,6 +26,11 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'accounts-detail',
+    loadChildren: () =>
+      import('./workflow/home/pages/accounts-detail/accounts-detail.module').then((m) => m.AccountsDetailModule)
+  },
+  {
     path: 'transfers',
     component: TransfersComponent,
     // loadChildren: () => import('./workflow/home/pages/transfers/transfers.module').then((m) => m.TransfersModule),
