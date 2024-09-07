@@ -1,0 +1,48 @@
+server {
+    listen       8080;
+    server_name  localhost;
+
+    # Configuración de la ruta principal
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Configuración para el microfrontend 'account'
+    location /mf/accounts/ {
+        proxy_pass http://arspositionacc:8080/;  # URL del servicio del microfrontend
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_redirect off;
+    }
+
+
+    # Configuración para el microfrontend 'consolidated-position'
+    location /mf/consolidated-position/ {
+        proxy_pass http://arspositionacc:8080/;  # URL del servicio del microfrontend
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_redirect off;
+    }
+
+    # Manejo de errores
+    error_page  404 /index.html;
+    location = /index.html {
+        root   /usr/share/nginx/html;
+    }
+
+    error_page  400 401 403 404  /40x.html;
+    location = /40x.html {
+        root   /usr/share/nginx/html;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
