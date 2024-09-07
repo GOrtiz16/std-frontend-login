@@ -16,8 +16,8 @@ export const environment: any = {
   },
   apiStdHome: {
     mock: false,
-    ip: 'http://10.2.0.10/',
-    consolidated_position: 'http://arspositionacc:8080/mf/consolidated-position',
+    ip: 'http://arspositionacc:8080/',
+    consolidated_position: 'mf/consolidated-position',
     detail_accounts: 'mf/details-accounts-data',
     accounts: 'http://arspositionacc:8080/mf/accounts',
     transfers: 'mf/transfers',
