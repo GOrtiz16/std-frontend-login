@@ -93,10 +93,10 @@ jobs:
             image.tag: ${{ github.event.inputs.tag }}
         id: bake
 
-      # # Deploy app to AKS
-      # - uses: azure/k8s-deploy@v5
-      #   with:
-      #     manifests: ${{ steps.bake.outputs.manifestsBundle }}
-      #     imagepullsecrets: |
-      #       ${{ env.REGISTRY_NAME }}-registry-connection
-      #     namespace: ${{ env.NAMESPACE }}
+      # Deploy app to AKS
+      - uses: azure/k8s-deploy@v5
+        with:
+          manifests: ${{ steps.bake.outputs.manifestsBundle }}
+          imagepullsecrets: |
+            ${{ env.REGISTRY_NAME }}-registry-connection
+          namespace: ${{ env.NAMESPACE }}
