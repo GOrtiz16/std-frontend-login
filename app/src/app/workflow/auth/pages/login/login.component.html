@@ -14,7 +14,7 @@
           <span *ngIf="version" class="block text-[10px] text-dark/50 font-normal">{{ version }}</span>
         </h1>
 
-        <form [formGroup]="loginPresenter.form">
+        <form [formGroup]="loginPresenter.form" method="post">
           <div *ngIf="caseShowAlert" class="mb-20">
             <std-toast [status]="caseShowAlert === 'blocked1' || caseShowAlert === 'blocked2' ? 'error' : 'warning'">
               <span [innerHTML]="msghowAlert"></span>

@@ -2,8 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.name }}
+  namespace: microfront-uat
 spec:
-  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: RollingUpdate
+  replicas: 1
   selector:
     matchLabels:
       app: {{ .Values.name }}
@@ -16,4 +19,11 @@ spec:
       - name: {{ .Values.name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
-        - containerPort: {{ .Values.containerPort }}
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "250Mi"
+            cpu: "250m"
+          limits:
+            memory: "500Mi"
+            cpu: "500m"

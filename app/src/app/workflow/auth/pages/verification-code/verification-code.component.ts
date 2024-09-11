@@ -10,7 +10,7 @@ export interface INavigationExtras {
   email: string;
   accessToken: string;
   userCredentialId: string;
-  password: string;
+  phrase: string;
 }
 
 @Component({
@@ -29,7 +29,7 @@ export class VerificationCodeComponent {
     email: '*********@*****.***',
     accessToken: '',
     userCredentialId: '',
-    password: ''
+    phrase: ''
   };
 
   @ViewChild('pinInput') pinInput!: ElementRef;
@@ -67,7 +67,7 @@ export class VerificationCodeComponent {
       email: state?.email,
       accessToken: state?.accessToken,
       userCredentialId: state?.userCredentialId,
-      password: state?.password
+      phrase: state?.phrase
     };
   }
 
@@ -87,7 +87,7 @@ export class VerificationCodeComponent {
 
     this.passwordUpdateService
       .passwordUpdate(
-        this.navigationExtras.password,
+        this.navigationExtras.phrase,
         this.navigationExtras.accessToken,
         this.form.controls['pinCode'].value
       )

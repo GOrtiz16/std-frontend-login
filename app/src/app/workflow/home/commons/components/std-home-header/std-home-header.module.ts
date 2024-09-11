@@ -6,11 +6,19 @@ import { StdRadioButtonModule } from 'src/app/shared/components/std-radio-button
 
 import { StdHomeHeaderComponent } from './std-home-header.component';
 import { StdDropDownModule } from 'src/app/shared/components/std-dropdown/std-drop-down.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [StdHomeHeaderComponent],
-  imports: [CommonModule, StdSkeletonHeaderModule, StdRadioButtonModule, StdDropDownModule],
+  imports: [
+    CommonModule,
+    StdSkeletonHeaderModule,
+    StdRadioButtonModule,
+    StdDropDownModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   exports: [StdHomeHeaderComponent]
 })
 export class StdHomeHeaderModule {}

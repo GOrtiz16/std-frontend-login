@@ -13,6 +13,7 @@ export interface ICompany {
   customerId: string; // ejm: '20100065038' (Company RUC),
   customerIdType: number; // ejm: 2 (RUC)
   isHolding: boolean;
+  nameHolding: string;
   profiles: Array<any>;
 }
 

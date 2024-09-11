@@ -118,4 +118,8 @@ export class StdHomeSidebarComponent implements OnInit {
   navigateTo(destiny: string): void {
     this.router.navigateByUrl(destiny);
   }
+
+  goToOldOOBB(): void {
+    window.open('https://www.santander.com.pe/BSP/home/index2.html', '_blank', 'noopener,noreferrer');
+  }
 }

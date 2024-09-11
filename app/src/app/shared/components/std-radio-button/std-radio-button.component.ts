@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'std-radio-button',
@@ -15,6 +15,12 @@ export class StdRadioButtonComponent {
   @Input() status: 'default' | 'error' = 'default';
   @Input() classes!: string;
   @Input() classesRadio!: string;
+
+  @Output() changeEmitter = new EventEmitter<any>();
+
+  onChange(): void {
+    this.changeEmitter.emit(this.value);
+  }
 
   get statusClasses(): string {
     return (

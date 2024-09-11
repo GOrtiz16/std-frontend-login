@@ -72,6 +72,7 @@ export class HomeShellService {
           customerId: '20100065038',
           customerIdType: 2,
           isHolding: true,
+          nameHolding: 'Holding 1',
           profiles: [
             { key: 1, name: 'Administrador' },
             { key: 2, name: 'Firmante' },
@@ -90,16 +91,18 @@ export class HomeShellService {
         },
         {
           fullName: 'SOCIEDAD LAS CASUARINAS S.R.L.',
-          customerId: '20100065038',
+          customerId: '20100065039',
           customerIdType: 2,
           isHolding: false,
+          nameHolding: 'Holding 1',
           profiles: [{ key: 1, name: 'Administrador' }]
         },
         {
           fullName: 'AJEPER S.A.',
-          customerId: '20100065038',
+          customerId: '20100065040',
           customerIdType: 2,
           isHolding: false,
+          nameHolding: 'Holding 2',
           profiles: [
             { key: 1, name: 'Administrador' },
             { key: 2, name: 'Firmante' },
@@ -118,9 +121,10 @@ export class HomeShellService {
         },
         {
           fullName: 'INVERSIONES PLATINUM S.A.C.',
-          customerId: '20100065038',
+          customerId: '20100065041',
           customerIdType: 2,
           isHolding: false,
+          nameHolding: 'Holding 2',
           profiles: [
             { key: 1, name: 'Administrador' },
             { key: 2, name: 'Firmante' },
@@ -139,9 +143,10 @@ export class HomeShellService {
         },
         {
           fullName: 'CORPORACION DRD S.A.C',
-          customerId: '20100065038',
+          customerId: '20100065042',
           customerIdType: 2,
           isHolding: false,
+          nameHolding: 'Holding 3',
           profiles: [
             { key: 1, name: 'Administrador' },
             { key: 2, name: 'Firmante' },
@@ -161,9 +166,90 @@ export class HomeShellService {
         },
         {
           fullName: 'ZZZZZZZZZZZZZZZZZZZZZZZZZZZ',
-          customerId: '20100065038',
+          customerId: '20100065043',
           customerIdType: 2,
           isHolding: false,
+          nameHolding: '',
+          profiles: []
+        },
+        {
+          fullName: 'INVERSIONES GLOBAL S.A.C.',
+          customerId: '20567812345',
+          customerIdType: 2,
+          isHolding: true,
+          nameHolding: 'Holding 4',
+          profiles: []
+        },
+        {
+          fullName: 'CORPORACION ALFA S.R.L.',
+          customerId: '20543210987',
+          customerIdType: 2,
+          isHolding: false,
+          nameHolding: 'Holding 5',
+          profiles: [{ key: 1, name: 'Director' }]
+        },
+        {
+          fullName: 'GRUPO BETA S.A.',
+          customerId: '20345678901',
+          customerIdType: 2,
+          isHolding: false,
+          nameHolding: 'Holding 6',
+          profiles: []
+        },
+        {
+          fullName: 'COMPANIA SIGMA S.R.L.',
+          customerId: '20432109876',
+          customerIdType: 2,
+          isHolding: false,
+          nameHolding: 'Holding 6',
+          profiles: []
+        },
+        {
+          fullName: 'EMPRESA XYZ S.A.C.',
+          customerId: '20654321098',
+          customerIdType: 2,
+          isHolding: false,
+          nameHolding: 'Holding 7',
+          profiles: [{ key: 2, name: 'Gerente General' }]
+        },
+        {
+          fullName: 'SOLUCIONES OMEGA S.A.',
+          customerId: '20765432109',
+          customerIdType: 2,
+          isHolding: true,
+          nameHolding: 'Holding 8',
+          profiles: []
+        },
+        {
+          fullName: 'CONSULTORIA DELTA S.R.L.',
+          customerId: '20876543210',
+          customerIdType: 2,
+          isHolding: false,
+          nameHolding: 'Holding 9',
+          profiles: [{ key: 3, name: 'Analista' }]
+        },
+        {
+          fullName: 'NEGOCIOS GAMMA S.A.C.',
+          customerId: '20987654321',
+          customerIdType: 2,
+          isHolding: false,
+          nameHolding: 'Holding 9',
+          profiles: []
+        },
+        {
+          fullName: 'CORPORACION EPSILON S.A.C.',
+          customerId: '20123456789',
+          customerIdType: 2,
+          isHolding: false,
+          nameHolding: 'Holding 10',
+          profiles: []
+        },
+        {
+          fullName: 'GRUPO ZETA S.A.',
+          customerId: '20234567890',
+          customerIdType: 2,
+          isHolding: true,
+          nameHolding: 'Holding 11',
           profiles: []
         }
       ],

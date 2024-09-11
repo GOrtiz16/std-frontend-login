@@ -1,4 +1,4 @@
 <label [ngClass]="wrapperClasses">
-  <input [ngClass]="checkboxClasses" type="radio" [name]="name" [value]="value" [checked]="checked" [readonly]="readonly" [disabled]="disabled" />
+  <input [ngClass]="checkboxClasses" type="radio" [name]="name" [value]="value" [checked]="checked" [readonly]="readonly" [disabled]="disabled" (change)="onChange()" />
   <span *ngIf="label" [ngClass]="disabled ? 'text-dark/[0.23]' : ''">{{ label }}</span>
 </label>

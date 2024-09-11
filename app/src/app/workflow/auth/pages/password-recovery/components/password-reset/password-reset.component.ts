@@ -21,7 +21,11 @@ export class PasswordResetComponent {
 
   form!: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder, private passwordRetrieveService : PasswordRetrieveService ) {}
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private passwordRetrieveService: PasswordRetrieveService
+  ) {}
 
   ngOnInit() {
     this.initForm();
@@ -71,13 +75,15 @@ export class PasswordResetComponent {
   onSubmit() {
     this.isLoading = true;
     const navigationState = history.state;
-    this.passwordRetrieveService.passwordRetrieve(this.form.controls['password'].value, navigationState.username).subscribe({
-      next: (response) => {
-        this.router.navigate(['/']);
-      },
-      error: () => {
-         this.isLoading = false;
-      }
-    });
+    this.passwordRetrieveService
+      .passwordRetrieve(this.form.controls['password'].value, navigationState.username)
+      .subscribe({
+        next: (response) => {
+          this.router.navigate(['/']);
+        },
+        error: () => {
+          this.isLoading = false;
+        }
+      });
   }
 }

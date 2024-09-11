@@ -35,9 +35,12 @@
       </p>
     </div>
     <div class="max-w-[306px] w-full hidden lg:block">
-      <std-dropdown [data]="dataDropDown">
-        <std-radio-button *ngFor="let company of homeSession.customers" [label]="company.fullName" name="company" [white]="true"></std-radio-button>
-      </std-dropdown>
+      <form>
+        <std-dropdown [data]="dataDropDown" [disableButton]="disableButton" (filerCompanyEmitter)="filterCompanyList($event)" (toggleCollapseEmitter)="toggleCollapse($event)" (onChangeCompanyEmitter)="onChangeCompany()">
+          <std-radio-button *ngFor="let company of companyList" [label]="company.fullName" [value]="company.customerId" [white]="true" [checked]="company.customerId == selectedCustomerId" (changeEmitter)="onCompanySelect(company)">
+          </std-radio-button>
+        </std-dropdown>
+      </form>
     </div>
   </div>
 </header>

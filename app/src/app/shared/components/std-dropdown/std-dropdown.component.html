@@ -5,7 +5,7 @@
         <p class="text-sm text-white leading-5 font-sans font-semibold hidden lg:block cursor-pointer">{{ data.company }}</p>
         <p class="text-white font-bold text-base lg:text-[18px] leading-6 cursor-pointer">{{ data.fullName || '' }}</p>
       </div>
-      <i class="icon-chevron-down text-white cursor-pointer text-2xl font-bold"></i>
+      <i class="text-white cursor-pointer text-2xl font-bold" [ngClass]="{ 'icon-chevron-down': !isOpen, 'icon-chevron-up': isOpen, 'slide-up': isOpen, 'slide-down': !isOpen }"></i>
     </div>
     <div *ngIf="isOpen" class="css-collapse-body js-collapse-body hidden w-full pt-4 bg-primary py-2 px-4 lg:pt-5 lg:pb-4 lg:px-3 absolute left-0 z-10 rounded-br-2xl rounded-bl-2xl {{ data.company ? 'top-12' : 'top-9' }}">
       <div class="flex flex-col gap-4 w-full">
@@ -14,16 +14,17 @@
         <div class="flex flex-col gap-1 relative">
           <div class="relative">
             <i class="absolute top-3 left-3 text-2xl leading-none text-soft icon-search"></i>
-            <input class="w-full h-12 rounded-lg p-3 placeholder:text-soft border-border-default hover:border-dark focus:border-alternative focus:ring-alternative pl-12" type="search" placeholder="Buscar empresa">
+            <input class="w-full h-12 rounded-lg p-3 placeholder:text-soft border-border-default hover:border-dark focus:border-alternative focus:ring-alternative pl-12" type="search" placeholder="Buscar empresa" (input)="onInputChange($event)">
           </div>
         </div>
         
         <div class="flex flex-col gap-4 overflow-y-auto max-h-[272px] mb-16 p-1">
           <ng-content></ng-content>
         </div>
+        
       </div>
       <div class="absolute bottom-[-2px] left-0 w-full bg-alternative-light h-16 p-4 flex justify-center items-center rounded-br-2xl rounded-bl-2xl">
-        <std-button label="Consultar" size="s" disabled class="w-full"></std-button>
+        <std-button label="Consultar" size="s" class="w-full" [disabled]="disableButton" (clickEvent)="onChangeCompany()"></std-button>
       </div>
     </div>
   </div>
