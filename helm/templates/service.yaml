@@ -9,7 +9,7 @@ spec:
   type: ClusterIP
   ports:
   - port: TCP
-    targetPort: http-traffic
+    name: http-traffic
     port: 8080
     targetPort: 8080
   selector:
