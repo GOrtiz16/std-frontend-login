@@ -60,7 +60,7 @@ export class StdHomeSidebarComponent implements OnInit {
     }
   ];
 
-  constructor(public router: Router, private homeShellService: HomeShellService, private renderer: Renderer2) {}
+  constructor(public router: Router, private homeShellService: HomeShellService, private renderer: Renderer2) { }
 
   ngOnInit() {
     this.homeShellService.getToggleSidebar().subscribe(() => this.toggleSidebar(true));
@@ -83,13 +83,6 @@ export class StdHomeSidebarComponent implements OnInit {
   handleLogout(): void {
     sessionStorage.clear();
     this.router.navigateByUrl('/login').then(() => window.location.reload());
-  }
-
-  toggleClass(selector: string, className: string, add: boolean): void {
-    const elements = this.collapseMenu.nativeElement.querySelectorAll(`.${selector}`);
-    elements.forEach((element: HTMLElement) => {
-      add ? this.renderer.addClass(element, className) : this.renderer.removeClass(element, className);
-    });
   }
 
   @HostListener('window:resize', ['$event'])

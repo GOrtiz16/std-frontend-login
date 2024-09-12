@@ -1,12 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { pseudoMathRamdon } from 'src/app/shared/helpers';
-import { loadAsset, loadScript } from 'src/app/shared/helpers/asset-loader.helper';
+import { loadScript } from 'src/app/shared/helpers/asset-loader.helper';
 import { environment as env } from 'src/environments/environment';
+import { StdLayutMainModule } from '../../commons/components/std-layout-main/std-layout-main.module';
 
 @Component({
   selector: 'app-accounts-detail',
   templateUrl: './accounts.component.html',
-  styleUrl: './accounts.component.scss'
+  styleUrl: './accounts.component.scss',
+  standalone: true,
+  imports: [CommonModule,StdLayutMainModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  
 })
 export class AccountsComponent implements OnInit {
   loading = false;

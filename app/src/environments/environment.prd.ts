@@ -18,7 +18,7 @@ export const environment: any = {
     mock: false,
     ip: 'http://10.2.0.10/',
     consolidated_position: 'mf/consolidated-position',
-    detail_accounts: 'mf/details-accounts-data',
+    detail_accounts: 'mf/details-accounts',
     accounts: 'mf/accounts',
     transfers: 'mf/transfers',
     api_home_session: 'api/mf/v1/home/session'

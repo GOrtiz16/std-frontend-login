@@ -1,14 +1,20 @@
-import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
-import { loadAsset, loadScript } from 'src/app/shared/helpers/asset-loader.helper';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Inject, OnInit, Renderer2 } from '@angular/core';
+import { loadScript } from 'src/app/shared/helpers/asset-loader.helper';
 import { environment as env } from 'src/environments/environment';
 import { HomeShellService } from '../../commons/services/home-shell.service';
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { pseudoMathRamdon } from 'src/app/shared/helpers';
+import { StdSkeletonContentModule } from '../../commons/components/std-skeleton-content/std-skeleton-content.module';
+import { StdLayutMainModule } from '../../commons/components/std-layout-main/std-layout-main.module';
 
 @Component({
   selector: 'app-consolidated-position',
   templateUrl: './consolidated-position.component.html',
-  styleUrl: './consolidated-position.component.scss'
+  styleUrl: './consolidated-position.component.scss',
+  standalone: true,
+  imports: [CommonModule, StdSkeletonContentModule,StdLayutMainModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export class ConsolidatedPositionComponent implements OnInit {
   loading = false;
