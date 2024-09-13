@@ -3,7 +3,7 @@ export const environment: any = {
   environment: 'development',
   apiStdLogin: {
     mock: true,
-    ip: 'http://10.0.50.10/',
+    ip: 'http://web.devsantander.com.pe/',
     api_info_canal: 'api/mf/v1/login/info',
     api_authentication: 'api/mf/v1/login/authentication',
     api_update_password: 'api/mf/v1/login/password/update',
@@ -16,7 +16,7 @@ export const environment: any = {
   },
   apiStdHome: {
     mock: true,
-    ip: 'http://10.0.50.10/',
+    ip: 'http://web.devsantander.com.pe/',
     consolidated_position: 'mf/consolidated-position',
     detail_accounts: 'mf/details-accounts',
     accounts: 'mf/accounts',

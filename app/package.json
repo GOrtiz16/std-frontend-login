@@ -1,6 +1,6 @@
 {
   "name": "std-frontend-login",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "scripts": {
     "start": "ng serve",
     "start:dev": "ng serve --configuration development",
